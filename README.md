@@ -1,14 +1,15 @@
 My Dotfiles
 ===========
 
-My `.vimrc` and other miscellaneous configuration files.
+My `.vimrc`, `.screenrc` and other miscellaneous configuration files.
 
 Installation
 ============
 
-- Install `vim`
-- Install [spf13](https://github.com/spf13/spf13-vim)
+- Install `vim`.
+- Install [spf13](https://github.com/spf13/spf13-vim).
 - Clone this repository somewhere.
+- Install `screen`.
 - Run the `install.sh` script.
 - Install the required bundles by running `vim +PluginInstall +qa`.
 - Enjoy!
