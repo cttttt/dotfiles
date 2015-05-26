@@ -20,3 +20,7 @@ set noexpandtab
 " I'm used to hitting . after a visual shift if I need to repeat the shift.
 unmap <
 unmap >
+
+" Use a separator character that's less than a column.
+set fillchars+=vert:│
+hi VertSplit ctermbg=NONE guibg=NONE
