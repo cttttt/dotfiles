@@ -1,0 +1,17 @@
+" To install, first install spf13, then run :PluginInstall
+"
+Plugin 'NLKNguyen/papercolor-theme'
+colorscheme PaperColor
+
+" Don't even use this, but adding it fixes a bug with neocomplete (ESC doesn't
+" close the completion list).
+Plugin 'AutoClose'
+
+" Prevent movement across linebreaks.
+set whichwrap=<,>,[,
+
+" See :help tabstop
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab

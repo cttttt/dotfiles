@@ -1,1 +1,25 @@
-# dotfiles
+My Dotfiles
+===========
+
+My `.vimrc` and other miscellaneous configuration files.
+
+Installation
+============
+
+- Install `vim`
+- Install [spf13](https://github.com/spf13/spf13-vim)
+- Clone this repository somewhere.
+- Run the `install.sh` script.
+- Install the required bundles by running `vim +PluginInstall +qa`.
+- Enjoy!
+
+
+Maintaining
+===========
+
+- After installing, editing files in `dotfiles/` will edit dotfiles under `~`.
+- Added files to `dotfiles/`?  Rerun `install.sh`.
+
+<!--
+:vim:tw:80
+-->
