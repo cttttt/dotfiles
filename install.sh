@@ -22,6 +22,14 @@ main () {
 
 	ln -sf "$PWD/$srcFile" "$targetPath"
     done
+
+    cat <<DONE
+All done!
+
+Remember: To install VIM plugins, run:
+
+vim +PluginInstall +qa
+DONE
 }
 
 main "$@"

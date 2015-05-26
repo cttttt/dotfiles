@@ -15,3 +15,8 @@ set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set noexpandtab
+
+" A 'feature' to have shift keys reselect the last visual is kinda annoying.
+" I'm used to hitting . after a visual shift if I need to repeat the shift.
+unmap <
+unmap >
