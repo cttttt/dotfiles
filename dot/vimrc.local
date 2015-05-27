@@ -3,10 +3,6 @@
 Plugin 'NLKNguyen/papercolor-theme'
 colorscheme PaperColor
 
-" Don't even use this, but adding it fixes a bug with neocomplete (ESC doesn't
-" close the completion list).
-Plugin 'AutoClose'
-
 " Prevent movement across linebreaks.
 set whichwrap=<,>,[,
 
@@ -27,3 +23,7 @@ hi VertSplit ctermbg=NONE guibg=NONE
 
 " It's annoying that the cursor travels one character beyond the end of line.
 set ve=
+
+" When hitting ESC, neocomplete popup does not close.  This fixes it w/o
+" needing to install the ultra-aggressive AutoClose.
+iunmap <Esc>
