@@ -28,9 +28,14 @@ main () {
     cat <<DONE
 All done!
 
-Remember: To install VIM plugins, run:
+Remember: 
+
+- To install VIM plugins, run:
 
 vim +PluginInstall +qa
+
+- You should install Powerline fonts or the status line will look all messed
+  up. See https://github.com/powerline/fonts
 DONE
 }
 
