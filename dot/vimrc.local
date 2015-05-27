@@ -1,9 +1,7 @@
 " To install, first install spf13, then run :PluginInstall
 "
-Plugin 'NLKNguyen/papercolor-theme'
-
-Plugin 'wellsjo/wells-colorscheme.vim'
-colorscheme wells-colors
+Plugin 'CruizeMissile/Revolution.vim'
+colorscheme Revolution
 
 " Prevent movement across linebreaks.
 set whichwrap=<,>,[,
@@ -15,7 +13,7 @@ set softtabstop=4
 set noexpandtab
 
 " A 'feature' to have shift keys reselect the last visual is kinda annoying.
-" I'm used to hitting . after a visual shift if I need to repeat the shift.
+" I'm used to hitting `.` after a visual shift if I need to repeat the shift.
 unmap <
 unmap >
 
