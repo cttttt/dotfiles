@@ -1,7 +1,9 @@
 " To install, first install spf13, then run :PluginInstall
 "
 Plugin 'NLKNguyen/papercolor-theme'
-colorscheme PaperColor
+
+Plugin 'wellsjo/wells-colorscheme.vim'
+colorscheme wells-colors
 
 " Prevent movement across linebreaks.
 set whichwrap=<,>,[,
@@ -27,3 +29,7 @@ set ve=
 " When hitting ESC, neocomplete popup does not close.  This fixes it w/o
 " needing to install the ultra-aggressive AutoClose.
 iunmap <Esc>
+
+" Instead of highlighting spelling mistakes, underline them.
+hi clear SpellBad
+hi SpellBad cterm=underline
