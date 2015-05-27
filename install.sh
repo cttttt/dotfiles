@@ -12,14 +12,16 @@ main () {
 	exit 1
     fi
 
-    for srcFile in *; do
+    find * -name '[^.]*' -type f | while read srcFile; do
 	targetPath=$TARGET_DIR/.$srcFile
 	backupPath=$BACKUP_DIR/.$srcFile
 
 	if [ -e "$targetPath" ]; then
-	     mv "$targetPath" "$backupPath" || continue
+	    mkdir -p "$(dirname "$backupPath")"
+	    mv "$targetPath" "$backupPath" || continue
 	fi
 
+	mkdir -p "$(dirname "$targetPath")"
 	ln -sf "$PWD/$srcFile" "$targetPath"
     done
 
