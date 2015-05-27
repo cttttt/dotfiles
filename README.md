@@ -11,7 +11,7 @@ Installation
 - Clone this repository somewhere.
 - Install `screen`.
 - Run the `install.sh` script.
-- Install the required bundles by running `vim +PluginInstall +qa`.
+- Install the required bundles by running `vim +PluginClean! +PluginInstall +qa`.
 - Enjoy!
 
 
