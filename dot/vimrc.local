@@ -31,3 +31,8 @@ iunmap <Esc>
 " Instead of highlighting spelling mistakes, underline them.
 hi clear SpellBad
 hi SpellBad cterm=underline
+
+" Fix the colours for indent guides since I'm using a dark theme.
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
