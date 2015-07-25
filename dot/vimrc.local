@@ -39,3 +39,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " Use JSX friendly linter.
 let g:syntastic_javascript_checkers = ['jsxhint']
+
+" It's annoying enough that that everything overwrites the single yank buffer.
+" Having all of these actions replace the clipboard is annoying.
+"
+set clipboard-=unnamed
