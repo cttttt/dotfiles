@@ -44,3 +44,6 @@ let g:syntastic_javascript_checkers = ['jsxhint']
 " Having all of these actions replace the clipboard is annoying.
 "
 set clipboard-=unnamed
+
+" In VIM on Windows, use the font with the funky Powerline glyphs.
+set guifont=Meslo_LG_S_for_Powerline:h10:cANSI
