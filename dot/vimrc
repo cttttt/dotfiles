@@ -90,6 +90,12 @@ let g:airline_powerline_fonts = 1
 
 " Ensure that airline is visible at all times.
 set laststatus=2
+
+" List buffers along the top
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 
 " ctrlp - Fuzzy search {{{
@@ -115,7 +121,8 @@ Plugin 'tpope/vim-fugitive'
 " }}}
 
 " bindings  {{{
-let mapleader = ","
+let mapleader=';'
+nmap <C-b> :CtrlPBuffer<CR>
 map <C-e> :NERDTreeToggle<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
@@ -124,6 +131,12 @@ nmap <Leader>tc :tabclose<CR>
 nmap <Leader>tC :tabonly<CR>
 nmap <Leader>tt :tabnext<CR>
 nmap <Leader>tT :tabprev<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
+nmap <leader>bb :bn<CR>
+" }}}
+
+" prefs {{{
+set hidden
 " }}}
 
 " asthetics {{{
