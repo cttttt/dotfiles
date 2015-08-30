@@ -108,6 +108,10 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
 " }}}
 
+" fugitive - Git bindings and commands {{{
+Plugin 'tpope/vim-fugitive'
+" }}}
+
 " }}}
 
 " bindings  {{{
@@ -115,6 +119,11 @@ let mapleader = ","
 map <C-e> :NERDTreeToggle<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
+nmap <Leader>tn :tabnew<CR>
+nmap <Leader>tc :tabclose<CR>
+nmap <Leader>tC :tabonly<CR>
+nmap <Leader>tt :tabnext<CR>
+nmap <Leader>tT :tabprev<CR>
 " }}}
 
 " asthetics {{{
@@ -133,6 +142,9 @@ set guifont=Meslo_LG_S_for_Powerline:h10:cANSI
 
 " Show normal mode commands
 set showcmd
+
+" Highlight all matches after a search
+set hls
 
 " }}}
 
