@@ -145,10 +145,6 @@ let g:airline_theme='molokai'
 " colorscheme flattened_dark
 syntax on
 
-" Use a window separator that's the entire height of a line.
-set fillchars+='vert:\u007C'
-hi VertSplit ctermbg=NONE guibg=NONE
-
 " In gvim, use a font the includes the special powerline symbols.
 set guifont=Meslo_LG_S_for_Powerline:h10:cANSI
 
