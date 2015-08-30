@@ -7,11 +7,17 @@ Installation
 ============
 
 - Install `vim`.
-- Install [spf13](https://github.com/spf13/spf13-vim).
+- Install `Vundle`:
+
+```
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
 - Clone this repository somewhere.
-- Install `screen`.
+- Install `tmux`.
 - Run the `install.sh` script.
-- Install the required bundles by running `vim +PluginClean! +PluginInstall +qa`.
+- Install the required bundles by running `vim +PluginClean! +PluginInstall
+  +qa`.
 - Enjoy!
 
 

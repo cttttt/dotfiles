@@ -122,7 +122,6 @@ Plugin 'tpope/vim-fugitive'
 
 " bindings  {{{
 let mapleader=';'
-nmap <C-b> :CtrlPBuffer<CR>
 map <C-e> :NERDTreeToggle<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
@@ -132,7 +131,7 @@ nmap <Leader>tC :tabonly<CR>
 nmap <Leader>tt :tabnext<CR>
 nmap <Leader>tT :tabprev<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>bb :bn<CR>
+nmap <leader>b :bn<CR>
 " }}}
 
 " prefs {{{
