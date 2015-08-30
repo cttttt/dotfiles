@@ -1,5 +1,9 @@
 " vim:foldmethod=marker
 "
+
+" Helps airline glyphs display in Windows
+set encoding=utf-8
+
 " setup tips {{{
 "
 " Before this .vimrc can be used:
@@ -146,13 +150,16 @@ let g:airline_theme='molokai'
 syntax on
 
 " In gvim, use a font the includes the special powerline symbols.
-set guifont=Meslo_LG_S_for_Powerline:h10:cANSI
+set guifont=Meslo_LG_S_for_Powerline:h9:cANSI
 
 " Show normal mode commands
 set showcmd
 
 " Highlight all matches after a search
 set hls
+
+" Hide the toolbar in the GUI
+set guioptions-=T
 
 " }}}
 
