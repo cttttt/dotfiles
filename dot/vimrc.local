@@ -37,8 +37,8 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
-" Use JSX friendly linter.
-let g:syntastic_javascript_checkers = ['jsxhint']
+" Use eslint for now
+let g:syntastic_javascript_checkers = ['eslint']
 
 " It's annoying enough that that everything overwrites the single yank buffer.
 " Having all of these actions replace the clipboard is annoying.
