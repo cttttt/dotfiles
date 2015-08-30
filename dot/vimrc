@@ -1,5 +1,5 @@
 " vim:foldmethod=marker
-
+"
 " setup tips {{{
 "
 " Before this .vimrc can be used:
@@ -146,7 +146,7 @@ let g:airline_theme='molokai'
 syntax on
 
 " Use a window separator that's the entire height of a line.
-set fillchars+=vert:│
+set fillchars+='vert:\u007C'
 hi VertSplit ctermbg=NONE guibg=NONE
 
 " In gvim, use a font the includes the special powerline symbols.
