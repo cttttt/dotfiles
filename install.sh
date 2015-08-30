@@ -30,6 +30,10 @@ All done!
 
 Remember: 
 
+- Before installing plugins, install Vundle:
+
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 - To install VIM plugins, run:
 
 vim +PluginClean! +PluginInstall +qa
