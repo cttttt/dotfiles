@@ -18,6 +18,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 - Run the `install.sh` script.
 - Install the required bundles by running `vim +PluginClean! +PluginInstall
   +qa`.
+- On Windows, install the [Meslo Powerline Fonts](https://github.com/powerline/fonts).
 - Enjoy!
 
 
