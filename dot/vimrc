@@ -134,8 +134,8 @@ nmap <Leader>tc :tabclose<CR>
 nmap <Leader>tC :tabonly<CR>
 nmap <Leader>tt :tabnext<CR>
 nmap <Leader>tT :tabprev<CR>
-nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>b :bn<CR>
+nmap <leader>bc :bp <BAR> bd #<CR>
+nmap <leader>bb :bn<CR>
 " }}}
 
 " prefs {{{
@@ -150,7 +150,7 @@ let g:airline_theme='molokai'
 syntax on
 
 " In gvim, use a font the includes the special powerline symbols.
-set guifont=Meslo_LG_S_for_Powerline:h9:cANSI
+set guifont=Meslo_LG_S_for_Powerline:h9:cANSI,Menlo\ for\ Powerline:h11
 
 " Show normal mode commands
 set showcmd
@@ -169,5 +169,13 @@ set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 " }}}
+
+" file specific settings {
+augroup file_specific_settings
+    autocmd!
+    autocmd BufEnter .jshintrc setlocal filetype=json
+    autocmd BufEnter .eslintrc setlocal filetype=json
+augroup END
+" }
 
 " - chris
