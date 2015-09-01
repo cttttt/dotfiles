@@ -110,8 +110,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 " }}}
 
-" autopairs - Handle automatically matching pairs of parens/brackets/etc {{{
-Plugin 'jiangmiao/auto-pairs'
+" delimitMate - Handle automatically matching pairs of parens/brackets/etc {{{
+Plugin 'Raimondi/delimitMate'
 " }}}
 
 " undotree - Visualize the undo tree {{{
@@ -120,6 +120,10 @@ Plugin 'mbbill/undotree'
 
 " fugitive - Git bindings and commands {{{
 Plugin 'tpope/vim-fugitive'
+" }}}
+
+" autoclose-tag - Automatically close HTML tags {{{
+Plugin 'amirh/HTML-AutoCloseTag'
 " }}}
 
 " }}}
