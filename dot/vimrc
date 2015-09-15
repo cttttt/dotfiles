@@ -174,12 +174,19 @@ set softtabstop=4
 set noexpandtab
 " }}}
 
-" file specific settings {
+" file specific settings {{{
 augroup file_specific_settings
     autocmd!
     autocmd BufEnter .jshintrc setlocal filetype=json
     autocmd BufEnter .eslintrc setlocal filetype=json
 augroup END
-" }
+" }}}
+
+" windows-specific-settings {{{
+if has('windows')
+    let $PATH = 'C:\Program Files (x86)\Git\bin;' . $PATH
+    set shell=C:\Progra~2\Git\bin\bash.exe
+endif
+" }}}
 
 " - chris
