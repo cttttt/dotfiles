@@ -187,7 +187,7 @@ augroup END
 " }}}
 
 " windows-specific-settings {{{
-if has('windows')
+if has('win32')
     let $PATH = 'C:\Program Files (x86)\Git\bin;' . $PATH
     set shell=C:\Progra~2\Git\bin\bash.exe
 endif
