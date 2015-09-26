@@ -148,6 +148,8 @@ set hidden
 " For some reason, on the version of vim I have on my server, json files are
 " taken as Javascript.
 autocmd BufNewFile,BufRead *.json set ft=json
+set directory-=.
+let &directory=substitute(&directory,',','//,','')
 " }}}
 
 " asthetics {{{
