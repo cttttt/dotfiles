@@ -1,1 +1,2 @@
 ForwardAgent yes
+IdentityFile ~/.ssh/id_%u
