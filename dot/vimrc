@@ -130,7 +130,7 @@ Plugin 'amirh/HTML-AutoCloseTag'
 
 " bindings  {{{
 let mapleader=';'
-map <C-e> :NERDTreeToggle<CR>
+map <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 nmap <Leader>tn :tabnew<CR>
