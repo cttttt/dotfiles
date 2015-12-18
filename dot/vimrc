@@ -133,13 +133,6 @@ let mapleader=';'
 map <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
-nmap <Leader>tn :tabnew<CR>
-nmap <Leader>tc :tabclose<CR>
-nmap <Leader>tC :tabonly<CR>
-nmap <Leader>tt :tabnext<CR>
-nmap <Leader>tT :tabprev<CR>
-nmap <leader>bc :bp <BAR> bd #<CR>
-nmap <leader>bb :bn<CR>
 " }}}
 
 " prefs {{{
