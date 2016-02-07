@@ -126,6 +126,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'amirh/HTML-AutoCloseTag'
 " }}}
 
+" emmet - Expand macros to HTML {{{
+Plugin 'mattn/emmet-vim'
+" }}}
+
+" bufexplorer - A rich buffer list {{{
+Plugin 'vim-scripts/bufexplorer.zip'
+" }}}
+
 " }}}
 
 " bindings  {{{
@@ -141,6 +149,20 @@ set hidden
 " For some reason, on the version of vim I have on my server, json files are
 " taken as Javascript.
 autocmd BufNewFile,BufRead *.json set ft=json
+
+" Finally caving and expanding tabs, but only for Javascript
+autocmd FileType javascript set expandtab
+
+" Hide node_modules directories in NERDTree.  Show them with 'f'.
+let NERDTreeIgnore=['^node_modules$[[dir]]']
+
+" Show the help for BufExplorer by default.  The bindings are kinda arbitrary.
+let g:bufExplorerDefaultHelp=1
+
+" I think one of the whole points of BufExplorer is to make it easy to delete
+" NoName buffers.
+let g:bufExplorerShowNoName=1
+
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
 " }}}
