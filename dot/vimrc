@@ -138,7 +138,7 @@ Plugin 'vim-scripts/bufexplorer.zip'
 
 " bindings  {{{
 let mapleader=';'
-map <C-e> :NERDTree<CR>
+nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 " }}}
