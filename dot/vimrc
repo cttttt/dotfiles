@@ -102,6 +102,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 
+"airline-themes - Themes for Status bar {{{
+Plugin 'vim-airline/vim-airline-themes'
+"}}}
+
 " ctrlp - Fuzzy search {{{
 Plugin 'kien/ctrlp.vim'
 " }}}
