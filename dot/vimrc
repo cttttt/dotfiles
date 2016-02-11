@@ -186,6 +186,12 @@ set hls
 " Hide the toolbar in the GUI
 set guioptions-=T
 
+" Highlight the current line
+set cursorline
+
+" Use bold instead of underline to highlight
+hi CursorLine term=bold cterm=bold guibg=Grey40
+
 " }}}
 
 " indentation {{{
