@@ -168,7 +168,7 @@ let &directory=substitute(&directory,',','//,','')
 " }}}
 
 " asthetics {{{
- 
+
 colorscheme jaime
 let g:airline_theme='molokai'
 " colorscheme flattened_dark
