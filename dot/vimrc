@@ -169,6 +169,7 @@ let g:bufExplorerShowNoName=1
 
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
+
 " }}}
 
 " asthetics {{{
@@ -195,7 +196,6 @@ set cursorline
 
 " Use bold instead of underline to highlight
 hi CursorLine term=bold cterm=bold guibg=Grey95
-
 " }}}
 
 " indentation {{{
