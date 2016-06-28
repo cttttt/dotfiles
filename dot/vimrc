@@ -138,6 +138,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'vim-scripts/bufexplorer.zip'
 " }}}
 
+" editorconfig - Interprets editor agnostic configuration files {{{
+Plugin 'editorconfig/editorconfig-vim'
+" }}}
 " }}}
 
 " bindings  {{{
@@ -166,6 +169,11 @@ let g:bufExplorerDefaultHelp=1
 " I think one of the whole points of BufExplorer is to make it easy to delete
 " NoName buffers.
 let g:bufExplorerShowNoName=1
+
+" Ignore editorconfig settings for special views
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+let g:EditorConfig_exclude_patterns = ['scp://.*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
