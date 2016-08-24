@@ -141,6 +141,10 @@ Plugin 'vim-scripts/bufexplorer.zip'
 " editorconfig - Interprets editor agnostic configuration files {{{
 Plugin 'editorconfig/editorconfig-vim'
 " }}}
+
+" vim-livedown - Live Markdown previews from VIM {{{
+Plugin 'shime/vim-livedown'
+" }}}
 " }}}
 
 " bindings  {{{
@@ -148,6 +152,7 @@ let mapleader=';'
 nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
+nmap gm :LivedownToggle<CR>
 " }}}
 
 " prefs {{{
