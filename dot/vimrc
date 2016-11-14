@@ -60,6 +60,7 @@ Plugin 'CruizeMissile/Revolution.vim'
 Plugin 'jlesquembre/peaksea'
 Plugin 'romainl/flattened'
 Plugin 'jaimebuelta/jaime-vim-colorscheme'
+Plugin 'dracula/vim'
 " }}}
 
 " vim-javascript - Javascript syntax and tweaks {{{
@@ -187,8 +188,11 @@ let &directory=substitute(&directory,',','//,','')
 
 " asthetics {{{
 
-colorscheme jaime
-let g:airline_theme='molokai'
+" colorscheme jaime
+colorscheme dracula
+" let g:airline_theme='molokai'
+let g:airline_theme='bubblegum'
+
 " colorscheme flattened_dark
 syntax on
 
@@ -209,6 +213,9 @@ set cursorline
 
 " Use bold instead of underline to highlight
 hi CursorLine term=bold cterm=bold guibg=Grey95
+
+" Use a vertical bar for vertical splits
+set fillchars+=vert:\ 
 " }}}
 
 " indentation {{{
