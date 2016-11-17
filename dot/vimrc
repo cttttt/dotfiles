@@ -143,9 +143,6 @@ Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'editorconfig/editorconfig-vim'
 " }}}
 
-" vim-livedown - Live Markdown previews from VIM {{{
-Plugin 'shime/vim-livedown'
-" }}}
 " }}}
 
 " bindings  {{{
