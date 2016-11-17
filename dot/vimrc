@@ -215,7 +215,12 @@ set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey95
 
 " Use a vertical bar for vertical splits
-set fillchars+=vert:\ 
+"
+" This looks better, but a space isn't recognized as a line by iTerm.  So the
+" natural selection feature doesn't work.
+"
+" set fillchars+=vert:\ 
+" 
 " }}}
 
 " indentation {{{
