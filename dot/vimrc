@@ -154,6 +154,8 @@ nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
+nmap <Leader>bb :b#<CR>
+nmap <Leader>b3 :b#<CR>
 " }}}
 
 " prefs {{{
