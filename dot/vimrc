@@ -211,7 +211,7 @@ set guioptions-=T
 set cursorline
 
 " Use bold instead of underline to highlight
-hi CursorLine term=bold cterm=bold guibg=Grey95
+hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 guifg=black
 
 " Use a vertical bar for vertical splits
 "
