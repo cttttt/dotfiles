@@ -143,6 +143,14 @@ Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'editorconfig/editorconfig-vim'
 " }}}
 
+" nerdtree-git-plugin - A plugin for viewing git status in NerdTree{{{
+Plugin 'xuyuanp/nerdtree-git-plugin'
+" }}}
+
+" vim-grepper - A plugin for viewing git status in NerdTree{{{
+Plugin 'mhinz/vim-grepper'
+" }}}
+
 " }}}
 
 " bindings  {{{
