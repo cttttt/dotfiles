@@ -108,7 +108,7 @@ Plugin 'vim-airline/vim-airline-themes'
 "}}}
 
 " ctrlp - Fuzzy search {{{
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " }}}
 
 " indentguides - Show vertical lines for indentation levels {{{
@@ -151,6 +151,14 @@ Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-grepper'
 " }}}
 
+" vim-git - Syntax files for git files {{{
+Plugin 'tpope/vim-git'
+" }}}
+
+" ctrlp-py-matcher - A faster matcher than ctrlp's build in version {{{
+Plugin 'FelikZ/ctrlp-py-matcher'
+" }}}
+
 " }}}
 
 " bindings  {{{
@@ -161,6 +169,10 @@ nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
+
+" Use gs to search for the selection/motion with Grepper
+nmap gs <plug>(GrepperOperator)
+vmap gs <plug>(GrepperOperator)
 " }}}
 
 " prefs {{{
@@ -191,6 +203,12 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
 
+" Try and speed up ctrlp by using ag
+if executable("ag")
+    let g:ctrlp_user_command = 'ag %s -U -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
+endif
+
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " }}}
 
 " asthetics {{{
