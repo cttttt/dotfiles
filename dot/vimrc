@@ -159,6 +159,10 @@ Plugin 'tpope/vim-git'
 Plugin 'FelikZ/ctrlp-py-matcher'
 " }}}
 
+" vimaget - A smoother git flow {{{
+Plugin 'jreybert/vimagit'
+" }}}
+
 " }}}
 
 " bindings  {{{
