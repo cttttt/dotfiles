@@ -147,7 +147,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 " }}}
 
-" vim-grepper - A plugin for viewing git status in NerdTree{{{
+" vim-grepper - A plugin for easily searching through a project {{{
 Plugin 'mhinz/vim-grepper'
 " }}}
 
