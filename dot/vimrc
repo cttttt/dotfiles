@@ -225,7 +225,7 @@ let g:airline_theme='bubblegum'
 syntax on
 
 " In gvim, use a font the includes the special powerline symbols.
-set guifont=Meslo_LG_S_for_Powerline:h9:cANSI,Menlo\ for\ Powerline:h11,Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h11,Meslo_LG_S_for_Powerline:h9:cANSI,Menlo\ for\ Powerline:h11,Meslo\ LG\ S\ Regular\ for\ Powerline:h11
 
 " Show normal mode commands
 set showcmd
