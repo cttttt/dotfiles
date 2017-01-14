@@ -225,7 +225,7 @@ let g:airline_theme='bubblegum'
 syntax on
 
 " In gvim, use a font the includes the special powerline symbols.
-set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h11,Meslo_LG_S_for_Powerline:h9:cANSI,Menlo\ for\ Powerline:h11,Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h11,MesloLGS_NF:h9:cANSI,Meslo_LG_S_for_Powerline:h9:cANSI,Menlo\ for\ Powerline:h11,Meslo\ LG\ S\ Regular\ for\ Powerline:h11
 
 " Show normal mode commands
 set showcmd
@@ -269,7 +269,7 @@ augroup END
 " windows-specific-settings {{{
 if has('win32')
     let $PATH = 'C:\Program Files (x86)\Git\bin;' . $PATH
-    set shell=C:\Progra~2\Git\bin\bash.exe
+    set shell=C:\Progra~1\Git\bin\bash.exe
 endif
 " }}}
 
