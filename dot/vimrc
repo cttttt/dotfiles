@@ -2,7 +2,7 @@
 "
 
 " Helps airline glyphs display in Windows
-set encoding=utf-8
+set encoding=utf8
 
 " setup tips {{{
 "
@@ -127,10 +127,6 @@ Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-fugitive'
 " }}}
 
-" autoclose-tag - Automatically close HTML tags {{{
-Plugin 'amirh/HTML-AutoCloseTag'
-" }}}
-
 " emmet - Expand macros to HTML {{{
 Plugin 'mattn/emmet-vim'
 " }}}
@@ -163,6 +159,9 @@ Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'jreybert/vimagit'
 " }}}
 
+" vim-devicons - Glyphs for VIM {{{
+Plugin 'ryanoasis/vim-devicons'
+" }}}
 " }}}
 
 " bindings  {{{
