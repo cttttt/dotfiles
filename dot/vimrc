@@ -247,7 +247,12 @@ hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 g
 " }}}
 
 " indentation {{{
-set tabstop=4
+
+" 4 space tabstops, but still display tab characters with an 8
+" character tabstop.
+"
+set tabstop=8
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 " }}}

@@ -8,21 +8,21 @@ main () {
     mkdir -p "$BACKUP_DIR"
 
     if ! cd "$SCRIPT_DIR/dot"; then
-	echo "$SCRIPT_DIR: Could not locate this script's install dir." >&2
-	exit 1
+        echo "$SCRIPT_DIR: Could not locate this script's install dir." >&2
+        exit 1
     fi
 
     find * -name '[^.]*' -type f | while read srcFile; do
-	targetPath=$TARGET_DIR/.$srcFile
-	backupPath=$BACKUP_DIR/.$srcFile
+        targetPath=$TARGET_DIR/.$srcFile
+        backupPath=$BACKUP_DIR/.$srcFile
 
-	if [ -e "$targetPath" ]; then
-	    mkdir -p "$(dirname "$backupPath")"
-	    mv "$targetPath" "$backupPath" || continue
-	fi
+        if [ -e "$targetPath" ]; then
+            mkdir -p "$(dirname "$backupPath")"
+            mv "$targetPath" "$backupPath" || continue
+        fi
 
-	mkdir -p "$(dirname "$targetPath")"
-	ln -sf "$PWD/$srcFile" "$targetPath"
+        mkdir -p "$(dirname "$targetPath")"
+        ln -sf "$PWD/$srcFile" "$targetPath"
     done
 
     cat <<DONE
