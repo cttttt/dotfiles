@@ -56,10 +56,6 @@ filetype plugin indent on
 " plugins {{{
 
 " themes {{{
-Plugin 'CruizeMissile/Revolution.vim'
-Plugin 'jlesquembre/peaksea'
-Plugin 'romainl/flattened'
-Plugin 'jaimebuelta/jaime-vim-colorscheme'
 Plugin 'dracula/vim'
 " }}}
 
@@ -111,10 +107,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 " }}}
 
-" indentguides - Show vertical lines for indentation levels {{{
-Plugin 'nathanaelkane/vim-indent-guides'
-" }}}
-
 " delimitMate - Handle automatically matching pairs of parens/brackets/etc {{{
 Plugin 'Raimondi/delimitMate'
 " }}}
@@ -155,12 +147,12 @@ Plugin 'tpope/vim-git'
 Plugin 'FelikZ/ctrlp-py-matcher'
 " }}}
 
-" vimaget - A smoother git flow {{{
-Plugin 'jreybert/vimagit'
-" }}}
-
 " vim-devicons - Glyphs for VIM {{{
 Plugin 'ryanoasis/vim-devicons'
+" }}}
+
+" Gita  - Another Git Workflow {{{
+Plugin 'lambdalisue/vim-gita'
 " }}}
 " }}}
 
