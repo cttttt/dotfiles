@@ -185,8 +185,11 @@ set hidden
 " taken as Javascript.
 autocmd BufNewFile,BufRead *.json set ft=json
 
-" Finally caving and expanding tabs, but only for Javascript
-autocmd FileType javascript set expandtab
+" Finally caving and expanding tabs, for everything but makefiles
+autocmd FileType make set noexpandtab
+autocmd FileType make set tabstop=8
+autocmd FileType make set shiftwidth=8
+autocmd FileType make set softtabstop=8
 
 " Hide node_modules directories in NERDTree.  Show them with 'f'.
 let NERDTreeIgnore=['^node_modules$[[dir]]']
@@ -252,10 +255,9 @@ hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 g
 " }}}
 
 " indentation {{{
-set tabstop=8
+set tabstop=4
 set shiftwidth=4
-set softtabstop=4
-set noexpandtab
+set expandtab
 " }}}
 
 " file specific settings {{{
