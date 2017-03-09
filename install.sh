@@ -45,6 +45,8 @@ vim +PluginClean! +PluginInstall +qa
 - You should, do other interesting things.
 
 - As a final step, say hi to someone today.
+
+- For real.  A final step.
 DONE
 }
 
