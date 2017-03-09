@@ -41,6 +41,9 @@ vim +PluginClean! +PluginInstall +qa
 
 - You should install Powerline fonts or the status line will look all messed
   up. See https://github.com/powerline/fonts
+  
+- You should, as a last step, do other interesting things.
+
 DONE
 }
 
