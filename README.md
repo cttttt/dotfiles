@@ -1,7 +1,6 @@
 My Dotfiles
 ===========
 
-
 My `.vimrc`, `.screenrc` and other miscellaneous configuration files.
 
 Installation
