@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 SCRIPT_DIR=$(dirname "$0")
 BACKUP_DIR=~/.dotfiles.backup
 TARGET_DIR=~
