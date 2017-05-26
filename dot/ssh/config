@@ -2,3 +2,6 @@ ForwardAgent yes
 IdentityFile ~/.ssh/id_%u
 Compression yes
 IdentityFile ~/.ssh/id_droplet
+IdentityFile ~/.ssh/id_rsa
+UseKeychain yes
+AddKeysToAgent yes

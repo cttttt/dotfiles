@@ -97,6 +97,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Show index of buffers
+let g:airline#extensions#tabline#buffer_nr_show = 1
 " }}}
 
 "airline-themes - Themes for Status bar {{{
@@ -185,6 +188,7 @@ autocmd FileType make set softtabstop=8
 
 " Hide node_modules directories in NERDTree.  Show them with 'f'.
 let NERDTreeIgnore=['^node_modules$[[dir]]']
+let NERDTreeShowHidden=1
 
 " Show the help for BufExplorer by default.  The bindings are kinda arbitrary.
 let g:bufExplorerDefaultHelp=1
