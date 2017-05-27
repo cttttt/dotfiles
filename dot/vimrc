@@ -215,6 +215,8 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " asthetics {{{
 
+set termguicolors
+
 " colorscheme jaime
 colorscheme dracula
 " let g:airline_theme='molokai'
