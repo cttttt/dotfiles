@@ -57,6 +57,8 @@ filetype plugin indent on
 
 " themes {{{
 Plugin 'dracula/vim'
+Plugin 'nightsense/vim-crunchbang'
+Plugin 'zcodes/vim-colors-basic'
 " }}}
 
 " vim-javascript - Javascript syntax and tweaks {{{
@@ -187,7 +189,7 @@ autocmd FileType make set shiftwidth=8
 autocmd FileType make set softtabstop=8
 
 " Hide node_modules directories in NERDTree.  Show them with 'f'.
-let NERDTreeIgnore=['^node_modules$[[dir]]']
+let NERDTreeIgnore=['^node_modules$[[dir]]', '^.git[[dir]]']
 let NERDTreeShowHidden=1
 
 " Show the help for BufExplorer by default.  The bindings are kinda arbitrary.
@@ -218,7 +220,10 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 set termguicolors
 
 " colorscheme jaime
-colorscheme dracula
+" colorscheme dracula
+colorscheme crunchbang
+" colorscheme basic-dark
+
 " let g:airline_theme='molokai'
 let g:airline_theme='bubblegum'
 
