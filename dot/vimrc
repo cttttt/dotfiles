@@ -250,6 +250,15 @@ hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 g
 "
 " set fillchars+=vert:\ 
 " 
+
+" While scrolling, VIM blanks the background sometimes.  This fixes that
+" behaviour.
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  set t_ut=
+endif
+
 " }}}
 
 " indentation {{{
