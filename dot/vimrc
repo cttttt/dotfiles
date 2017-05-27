@@ -70,7 +70,7 @@ Plugin 'elzr/vim-json'
 " }}}
 
 " syntastic - Linting integration {{{
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 
 " From the documentation...
 let g:syntastic_always_populate_loc_list = 1
@@ -158,6 +158,10 @@ Plugin 'ryanoasis/vim-devicons'
 
 " Gita  - Another Git Workflow {{{
 Plugin 'lambdalisue/vim-gita'
+" }}}
+
+" ale  - Async Linting Engine {{{
+Plugin 'w0rp/ale'
 " }}}
 " }}}
 
