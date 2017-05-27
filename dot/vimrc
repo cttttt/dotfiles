@@ -140,10 +140,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 " }}}
 
-" vim-grepper - A plugin for easily searching through a project {{{
-Plugin 'mhinz/vim-grepper'
-" }}}
-
 " vim-git - Syntax files for git files {{{
 Plugin 'tpope/vim-git'
 " }}}
@@ -163,6 +159,15 @@ Plugin 'lambdalisue/vim-gita'
 " ale  - Async Linting Engine {{{
 Plugin 'w0rp/ale'
 " }}}
+
+" ack  - An Ag/Ack Wrapper {{{
+Plugin 'mileszs/ack.vim'
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+" }}}
+
 " }}}
 
 " bindings  {{{
@@ -173,10 +178,6 @@ nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
-
-" Use gs to search for the selection/motion with Grepper
-nmap gs <plug>(GrepperOperator)
-vmap gs <plug>(GrepperOperator)
 " }}}
 
 " prefs {{{
@@ -257,8 +258,8 @@ hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 g
 " This looks better, but a space isn't recognized as a line by iTerm.  So the
 " natural selection feature doesn't work.
 "
-" set fillchars+=vert:\ 
-" 
+" set fillchars+=vert:\
+"
 
 " While scrolling, VIM blanks the background sometimes.  This fixes that
 " behaviour.
