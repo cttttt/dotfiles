@@ -217,7 +217,9 @@ if executable("ag")
     let g:ctrlp_user_command = 'ag %s -U -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
 endif
 
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+if has('python')
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
 " }}}
 
 " asthetics {{{
