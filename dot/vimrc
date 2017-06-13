@@ -88,6 +88,7 @@ let mapleader=';'
 nmap <C-p> :Files<CR>
 nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
+nmap <Leader><C-e> :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
