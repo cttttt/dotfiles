@@ -8,164 +8,70 @@ set encoding=utf8
 "
 " Before this .vimrc can be used:
 "
-" - Install Vundle:
+" - Install vim-plug:
 "
-"   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
-" Run PluginSearch! (with a bang) the first time.  This will ensure that the
-" cache is built up.
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
 " And to install the included plugins:
 "
-"   vim +PluginInstall +qa
+"   vim +PlugInstall
 "
 " After editing the config, to uninstall unused plugins:
 "
-"   vim +PluginClean
+"   vim +PlugClean
 "
 " }}}
 
-" vundle {{{
-set nocompatible
-filetype off
+" vim-plug {{{
 
-" set runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-" all of your plugins must be added before the following line
-call vundle#end()
-filetype plugin indent on
-
-" :PluginList
-" - List configured plugins.
-" :PluginInstall
-" - Install plugins.  Append ! to update.
-" :PluginUpdate
-" - Update plugins.
-" :PluginSearch foo
-" - Searches for a plugin.  Append ! to refresh local cache.
-" :PluginClean
-" - Remove unused plugins.  Append ! for non-interactive deinstall.
-"
-" See :help vundle for details.
-
-" }}}
+call plug#begin('~/.vim/plugged')
 
 " plugins {{{
 
-" themes {{{
-Plugin 'dracula/vim'
-Plugin 'nightsense/vim-crunchbang'
-Plugin 'zcodes/vim-colors-basic'
+Plug 'nightsense/vim-crunchbang'        " theme
+Plug 'pangloss/vim-javascript'          " javascript movement/syntax
+Plug 'elzr/vim-json'                    " hide quotes in json files
+Plug 'scrooloose/nerdtree'              " file explorer
+Plug 'xuyuanp/nerdtree-git-plugin'      " show git status in nerdtree
+Plug 'bling/vim-airline'                " status bars
+Plug 'vim-airline/vim-airline-themes'   " status bar themes
+Plug 'Raimondi/delimitMate'             " paren/bracket matching
+Plug 'tpope/vim-fugitive'               " git helpers
+Plug 'vim-scripts/bufexplorer.zip'      " interactive buffer list
+Plug 'editorconfig/editorconfig-vim'    " interpret editor agnostic configs
+Plug 'tpope/vim-git'                    " syntax files for git commit messages
+Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
+Plug 'w0rp/ale'                         " async linting engine
+Plug '/usr/local/opt/fzf'
+            \ | Plug 'junegunn/fzf.vim' " fuzzy finder
+
 " }}}
 
-" vim-javascript - Javascript syntax and tweaks {{{
-Plugin 'pangloss/vim-javascript'
+call plug#end()
+
 " }}}
 
-" vim-json - JSON syntax and tweaks {{{
-Plugin 'elzr/vim-json'
+" plugin configuration {{{
+
+" airline {{{
+let g:airline_powerline_fonts = 1                   " use special symbols
+set laststatus=2                                    " always show airline
+let g:airline#extensions#tabline#enabled = 1        " show buffers up top
+let g:airline#extensions#tabline#fnamemod = ':t'    " only show the filename
+let g:airline#extensions#tabline#buffer_nr_show = 1 " show index of buffers
 " }}}
 
-" syntastic - Linting integration {{{
-" Plugin 'scrooloose/syntastic'
-
-" From the documentation...
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-" Customizations
-let g:syntastic_javascript_checkers = ['eslint']
-" }}}
-
-" nerdtree - File tree {{{
-Plugin 'scrooloose/nerdtree'
-" }}}
-
-" airline - Status bar {{{
-Plugin 'bling/vim-airline'
-
-" Use special symbols in the status bar.
-let g:airline_powerline_fonts = 1
-
-" Ensure that airline is visible at all times.
-set laststatus=2
-
-" List buffers along the top
-let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Show index of buffers
-let g:airline#extensions#tabline#buffer_nr_show = 1
-" }}}
-
-"airline-themes - Themes for Status bar {{{
-Plugin 'vim-airline/vim-airline-themes'
-"}}}
-
-" ctrlp - Fuzzy search {{{
-Plugin 'ctrlpvim/ctrlp.vim'
-" }}}
-
-" delimitMate - Handle automatically matching pairs of parens/brackets/etc {{{
-Plugin 'Raimondi/delimitMate'
-" }}}
-
-" undotree - Visualize the undo tree {{{
-Plugin 'mbbill/undotree'
-" }}}
-
-" fugitive - Git bindings and commands {{{
-Plugin 'tpope/vim-fugitive'
-" }}}
-
-" emmet - Expand macros to HTML {{{
-Plugin 'mattn/emmet-vim'
-" }}}
-
-" bufexplorer - A rich buffer list {{{
-Plugin 'vim-scripts/bufexplorer.zip'
-" }}}
-
-" editorconfig - Interprets editor agnostic configuration files {{{
-Plugin 'editorconfig/editorconfig-vim'
-" }}}
-
-" nerdtree-git-plugin - A plugin for viewing git status in NerdTree{{{
-Plugin 'xuyuanp/nerdtree-git-plugin'
-" }}}
-
-" vim-git - Syntax files for git files {{{
-Plugin 'tpope/vim-git'
-" }}}
-
-" ctrlp-py-matcher - A faster matcher than ctrlp's build in version {{{
-Plugin 'FelikZ/ctrlp-py-matcher'
-" }}}
-
-" vim-devicons - Glyphs for VIM {{{
-Plugin 'ryanoasis/vim-devicons'
-" }}}
-
-" Gita  - Another Git Workflow {{{
-Plugin 'lambdalisue/vim-gita'
-" }}}
-
-" ale  - Async Linting Engine {{{
-Plugin 'w0rp/ale'
-" }}}
-
-" ack  - An Ag/Ack Wrapper {{{
-Plugin 'mileszs/ack.vim'
-
+" ack {{{
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+" }}}
+
+" fzf {{{
+let g:fzf_action = {
+  \ 'ctrl-p': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 " }}}
 
 " }}}
