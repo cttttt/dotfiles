@@ -26,21 +26,37 @@ main () {
         ln -sf "$PWD/$srcFile" "$targetPath"
     done
 
-    cat <<DONE
+    cat <<'DONE'
 All done!
 
 Remember: 
 
 - Before installing plugins, install Vundle:
 
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 - To install VIM plugins, run:
 
-vim +PluginClean! +PluginInstall +qa
+  vim +PlugInstall +qa
 
 - You should install Powerline fonts or the status line will look all messed
-  up. See https://github.com/powerline/fonts
+  up. See [Meslo NerdFonts](https://nerdfonts.com).
+
+- You should also install [editorconfig-core](https://github.com/editorconfig/editorconfig-core-c).
+
+- You should install fzf using either brew or the directions [here](https://github.com/junegunn/fzf#using-git).
+
+- You should add the following to your ~/.bash_profile or ~/.bashrc:
+
+```
+if which ag >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+else 
+    export FZF_DEFAULT_COMMAND='find . -name .git -prune -o -print'
+fi
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+```
 
 - You should, do other interesting things.
 
