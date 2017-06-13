@@ -78,6 +78,7 @@ let g:fzf_action = {
 
 " bindings  {{{
 let mapleader=';'
+nmap <C-p> :Files<CR>
 nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader>u :UndotreeToggle<CR>
