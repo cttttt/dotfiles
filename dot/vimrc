@@ -12,13 +12,19 @@ set encoding=utf8
 "
 "   curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
-" And to install the included plugins:
+" - And to install the included plugins:
 "
 "   vim +PlugInstall
 "
-" After editing the config, to uninstall unused plugins:
+" - After editing the config, to uninstall unused plugins:
 "
 "   vim +PlugClean
+"
+" - Install fzf:
+"
+"   - On OSX: brew update && install fzf
+"   - On Linux: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+"   - On Windows: I dunno
 "
 " }}}
 
@@ -43,6 +49,7 @@ Plug 'tpope/vim-git'                    " syntax files for git commit messages
 Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
 Plug '/usr/local/opt/fzf'
+            \ | Plug '$HOME/.fzf' 
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
 
 " }}}
