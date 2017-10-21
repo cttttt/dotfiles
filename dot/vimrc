@@ -108,6 +108,11 @@ autocmd FileType make set tabstop=8
 autocmd FileType make set shiftwidth=8
 autocmd FileType make set softtabstop=8
 
+autocmd FileType ruby set shiftwidth=2
+autocmd FileType ruby set softtabstop=2
+autocmd FileType eruby set shiftwidth=2
+autocmd FileType eruby set softtabstop=2
+
 " Hide node_modules directories in NERDTree.  Show them with 'f'.
 let NERDTreeIgnore=['^node_modules$[[dir]]', '^.git[[dir]]']
 let NERDTreeShowHidden=1
