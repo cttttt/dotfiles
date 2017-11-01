@@ -51,6 +51,7 @@ Plug 'w0rp/ale'                         " async linting engine
 Plug '/usr/local/opt/fzf'
             \ | Plug '$HOME/.fzf' 
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
+Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 
 " }}}
 
@@ -140,6 +141,9 @@ endif
 if has('python')
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
+
+" Bite the bullet and use line numbers
+set number
 " }}}
 
 " asthetics {{{
@@ -199,8 +203,8 @@ endif
 " character tabstop.
 "
 set tabstop=8
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 " }}}
 

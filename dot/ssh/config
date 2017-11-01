@@ -5,3 +5,9 @@ IdentityFile ~/.ssh/id_droplet
 IdentityFile ~/.ssh/id_rsa
 UseKeychain yes
 AddKeysToAgent yes
+Host server.22tabs.com
+    User ctaylorr
+Host server.home 
+    User ctaylorr
+Host *
+    User chris_taylor
