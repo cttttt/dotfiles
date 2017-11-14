@@ -53,6 +53,7 @@ Plug '/usr/local/opt/fzf'
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
+Plug 'fatih/vim-go'                     " let's explore go
 
 " }}}
 
