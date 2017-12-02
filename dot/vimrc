@@ -48,6 +48,7 @@ Plug 'editorconfig/editorconfig-vim'    " interpret editor agnostic configs
 Plug 'tpope/vim-git'                    " syntax files for git commit messages
 Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
+Plug 'fatih/vim-go'                     " go toolchain integration
 Plug '/usr/local/opt/fzf'
             \ | Plug '$HOME/.fzf' 
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
@@ -84,7 +85,7 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 " }}}
 
-" }}}
+"}}}
 
 " bindings  {{{
 let mapleader=';'
