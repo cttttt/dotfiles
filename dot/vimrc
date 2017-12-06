@@ -55,6 +55,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
 
+
 " }}}
 
 call plug#end()
@@ -86,9 +87,11 @@ let g:fzf_action = {
 
 " ale {{{
 let g:ale_linters = {'go': ['gofmt', 'go lint', 'go vet', 'go build']}
-"}}}
+let g:ale_lint_delay=2000
+" }}}
 
-"}}}
+
+" }}}
 
 " bindings  {{{
 let mapleader=';'
@@ -150,6 +153,9 @@ endif
 
 " Bite the bullet and use line numbers
 set number
+
+" Make screen redraws faster with all these complex colours
+set lazyredraw
 " }}}
 
 " asthetics {{{
@@ -183,7 +189,7 @@ set hls
 set guioptions-=T
 
 " Highlight the current line
-set cursorline
+" set cursorline
 
 " Use bold instead of underline to highlight
 hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 guifg=black
