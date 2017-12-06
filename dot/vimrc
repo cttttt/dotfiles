@@ -54,7 +54,6 @@ Plug '/usr/local/opt/fzf'
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
-Plug 'fatih/vim-go'                     " let's explore go
 
 " }}}
 
@@ -84,6 +83,10 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 " }}}
+
+" ale {{{
+let g:ale_linters = {'go': ['gofmt', 'go lint', 'go vet', 'go build']}
+"}}}
 
 "}}}
 
@@ -212,6 +215,8 @@ set tabstop=8
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+
+autocmd FileType go setlocal tabstop=8 softtabstop=0 shiftwidth=8 noexpandtab
 " }}}
 
 " file specific settings {{{
