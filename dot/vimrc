@@ -30,7 +30,11 @@ set encoding=utf8
 
 " vim-plug {{{
 
-call plug#begin('~/.vim/plugged')
+if has("nvim")
+  call plug#begin('~/.vim/plugged')
+else
+  call plug#begin('~/.config/nvim/plugged')
+endif
 
 " plugins {{{
 
@@ -54,7 +58,13 @@ Plug '/usr/local/opt/fzf'
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
-Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+
+if has("nvim")
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug '/usr/local/Cellar/global/6.6.1/share/gtags/gtags.vim'
+else
+  Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+endif
 
 " }}}
 
@@ -99,6 +109,7 @@ nmap <C-p> :Files<CR>
 nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader><C-e> :NERDTreeFind<CR>
+let NERDTreeQuitOnOpen=1
 nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
@@ -156,6 +167,10 @@ set number
 
 " Make screen redraws faster with all these complex colours
 set lazyredraw
+
+if has("nvim")
+  let g:deoplete#enable_at_startup = 1
+endif
 " }}}
 
 " asthetics {{{
