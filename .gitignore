@@ -1,1 +1,2 @@
 **/*.swp
+dot/ssh/config.d/jump_hosts.config
