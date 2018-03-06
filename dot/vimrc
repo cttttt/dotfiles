@@ -183,8 +183,7 @@ set termguicolors
 " colorscheme crunchbang
 " colorscheme basic-dark
 
-let g:vimspectr30curve_dark_StatusLine = 'yellow'
-colorscheme vimspectr30curve-dark
+colorscheme vimspectr210-dark
 
 " let g:airline_theme='molokai'
 " let g:airline_theme='bubblegum'
