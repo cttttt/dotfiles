@@ -75,7 +75,7 @@ call plug#end()
 " plugin configuration {{{
 
 " airline {{{
-let g:airline_powerline_fonts = 1                   " use special symbols
+" let g:airline_powerline_fonts = 1                   " use special symbols
 set laststatus=2                                    " always show airline
 let g:airline#extensions#tabline#enabled = 1        " show buffers up top
 let g:airline#extensions#tabline#fnamemod = ':t'    " only show the filename
