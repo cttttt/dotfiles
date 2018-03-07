@@ -204,7 +204,7 @@ set hls
 set guioptions-=T
 
 " Highlight the current line
-" set cursorline
+set cursorline
 
 " Use bold instead of underline to highlight
 hi Search term=bold cterm=bold ctermbg=LightYellow ctermfg=Black guibg=#ffff00 guifg=black
