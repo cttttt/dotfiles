@@ -58,6 +58,8 @@ Plug '/usr/local/opt/fzf'
             \ | Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
+Plug 'theJian/vim-fethoi'
+Plug 'Alvarocz/vim-northpole'
 
 if has("nvim")
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -182,8 +184,9 @@ set termguicolors
 " colorscheme dracula
 " colorscheme crunchbang
 " colorscheme basic-dark
-
-colorscheme vimspectr210-dark
+" colorscheme vimspectr210-dark
+" colorscheme fethoi
+colorscheme northpole
 
 " let g:airline_theme='molokai'
 " let g:airline_theme='bubblegum'
