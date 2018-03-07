@@ -167,7 +167,7 @@ endif
 set number
 
 " Make screen redraws faster with all these complex colours
-set lazyredraw
+" set lazyredraw
 
 if has("nvim")
   let g:deoplete#enable_at_startup = 1
