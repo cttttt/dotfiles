@@ -62,6 +62,8 @@ Plug 'theJian/vim-fethoi'
 Plug 'Alvarocz/vim-northpole'
 
 if has("nvim")
+  let g:python_host_prog = '/usr/bin/python'
+  let g:python3_host_prog = '/usr/bin/python3'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug '/usr/local/Cellar/global/6.6.1/share/gtags/gtags.vim'
 else
