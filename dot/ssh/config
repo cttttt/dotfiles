@@ -3,6 +3,6 @@ IdentityFile ~/.ssh/id_%u
 Compression yes
 IdentityFile ~/.ssh/id_droplet
 IdentityFile ~/.ssh/id_rsa
-#UseKeychain yes
+UseKeychain yes
 AddKeysToAgent yes
 Include config.d/*.config
