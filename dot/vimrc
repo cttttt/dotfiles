@@ -124,6 +124,15 @@ nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
+
+let g:go_def_mapping_enabled=0
+autocmd FileType go nnoremap <buffer> <silent> gd :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-]> :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> g<LeftMouse> <LeftMouse>:GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-w><C-]> :<C-u>call go#def#Jump("split")<CR>
+autocmd FileType go nnoremap <buffer> <silent> <C-w>] :<C-u>call go#def#Jump("split")<CR>
+"autocmd FileType go nnoremap <buffer> <silent> <C-t> :<C-U>call go#def#StackPop(v:count1)<cr>
 " }}}
 
 " prefs {{{
