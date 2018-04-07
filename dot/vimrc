@@ -60,8 +60,13 @@ Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
 Plug 'theJian/vim-fethoi'
 Plug 'Alvarocz/vim-northpole'
+Plug 'thenewvu/vim-colors-sketching'
+Plug 'buc0/my-vim-colors'
+Plug 'hashivim/vim-terraform'
 
 if has("nvim")
+" let g:python_host_prog = '/usr/bin/python'
+" let g:python3_host_prog = '/usr/bin/python3'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug '/usr/local/Cellar/global/6.6.1/share/gtags/gtags.vim'
 else
@@ -103,7 +108,10 @@ let g:ale_lint_delay=2000
 " }}}
 
 " vim-go {{{
-let g:go_fmt_fail_silently = 0
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 1
+" }}}
+
 " }}}
 " }}}
 
@@ -119,6 +127,15 @@ nmap <Leader>u :UndotreeToggle<CR>
 nmap gm :LivedownToggle<CR>
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
+
+let g:go_def_mapping_enabled=0
+autocmd FileType go nnoremap <buffer> <silent> gd :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-]> :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> g<LeftMouse> <LeftMouse>:GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-w><C-]> :<C-u>call go#def#Jump("split")<CR>
+autocmd FileType go nnoremap <buffer> <silent> <C-w>] :<C-u>call go#def#Jump("split")<CR>
+"autocmd FileType go nnoremap <buffer> <silent> <C-t> :<C-U>call go#def#StackPop(v:count1)<cr>
 " }}}
 
 " prefs {{{
@@ -188,7 +205,9 @@ set termguicolors
 " colorscheme basic-dark
 " colorscheme vimspectr210-dark
 " colorscheme fethoi
-colorscheme northpole
+" colorscheme northpole
+" colorscheme sketching
+colorscheme bdconry
 
 " let g:airline_theme='molokai'
 " let g:airline_theme='bubblegum'
