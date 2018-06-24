@@ -63,6 +63,7 @@ Plug 'Alvarocz/vim-northpole'
 Plug 'thenewvu/vim-colors-sketching'
 Plug 'buc0/my-vim-colors'
 Plug 'hashivim/vim-terraform'
+Plug 'dyng/ctrlsf.vim'
 
 if has("nvim")
 " let g:python_host_prog = '/usr/bin/python'
