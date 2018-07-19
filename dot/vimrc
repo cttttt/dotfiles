@@ -111,6 +111,7 @@ let g:ale_lint_delay=2000
 " vim-go {{{
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
 " }}}
 
 " }}}
