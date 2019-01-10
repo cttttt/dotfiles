@@ -68,8 +68,9 @@ Plug 'dyng/ctrlsf.vim'
 if has("nvim")
 " let g:python_host_prog = '/usr/bin/python'
 " let g:python3_host_prog = '/usr/bin/python3'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'go get -u github.com/nsf/gocode && make' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'zchee/deoplete-go', { 'do': 'go get -u github.com/nsf/gocode && make' }
+  Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
   Plug '/usr/local/Cellar/global/6.6.1/share/gtags/gtags.vim'
 else
   Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
@@ -174,9 +175,7 @@ let g:bufExplorerDefaultHelp=1
 let g:bufExplorerShowNoName=1
 
 " Ignore editorconfig settings for special views
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-let g:EditorConfig_exclude_patterns = ['scp://.*']
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*', '*\.go']
 
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
