@@ -1,3 +1,4 @@
+require 'erb'
 require 'find'
 require 'fileutils'
 require 'net/http'
@@ -103,16 +104,21 @@ task :install_dotfiles do
       .sub(/^\/?/, '/.')
       .sub(/^/, Dir.home)
 
+    path_in_home = path_in_home.sub(/\.erb$/, '')
+
     if File.exist?(path_in_home)
       unless File.directory?(path)
-        FileUtils.rm_f("#{path_in_home}.orig")
-        FileUtils.mv(path_in_home, "#{path_in_home}.orig")
+        File.unlink("#{path_in_home}.orig")
+        File.rename(path_in_home, "#{path_in_home}.orig")
       end
     end
 
     unless File.exist?(path_in_home)
       if File.directory?(path)
         Dir.mkdir(path_in_home)
+      elsif path =~ /\.erb$/
+        erb = ERB.new(File.read(path))
+        File.write(path_in_home, erb.result_with_hash(ruby_platform: RUBY_PLATFORM))
       else
         FileUtils.ln_s(path, path_in_home)
       end
