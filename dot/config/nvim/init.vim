@@ -54,6 +54,7 @@ Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
 Plug 'fatih/vim-go'                     " go toolchain integration
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'nightsense/vimspectr'             " the last theme
 Plug 'theJian/vim-fethoi'
