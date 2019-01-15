@@ -106,7 +106,7 @@ task :install_dotfiles do
 
     path_in_home = path_in_home.sub(/\.erb$/, '')
 
-    if File.exist?(path_in_home)
+    if File.symlink?(path_in_home) || File.exist?(path_in_home)
       unless File.directory?(path)
         File.unlink("#{path_in_home}.orig")
         File.rename(path_in_home, "#{path_in_home}.orig")
@@ -118,7 +118,7 @@ task :install_dotfiles do
         Dir.mkdir(path_in_home)
       elsif path =~ /\.erb$/
         erb = ERB.new(File.read(path))
-        File.write(path_in_home, erb.result_with_hash(ruby_platform: RUBY_PLATFORM))
+        File.write(path_in_home, erb.result)
       else
         FileUtils.ln_s(path, path_in_home)
       end
