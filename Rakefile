@@ -108,7 +108,11 @@ task :install_dotfiles do
 
     if File.symlink?(path_in_home) || File.exist?(path_in_home)
       unless File.directory?(path)
-        File.unlink("#{path_in_home}.orig")
+        begin
+          File.unlink("#{path_in_home}.orig")
+        rescue Errno::ENOENT
+        end
+
         File.rename(path_in_home, "#{path_in_home}.orig")
       end
     end
