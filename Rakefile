@@ -82,7 +82,7 @@ task :source_bashrc_d do
 
   contains_source_bashrc_star = if File.exists?(bashrc_path)
                                   File.open(bashrc_path) do |bashrc|
-                                    bashrc.each_line.to_a.include?(source_bashrc_star)
+                                    bashrc.each_line.to_a.map(&:chomp).include?(source_bashrc_star)
                                   end
                                 end
 
