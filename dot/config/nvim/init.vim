@@ -49,6 +49,8 @@ Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'buc0/my-vim-colors'
 Plug 'hashivim/vim-terraform'
 Plug 'dyng/ctrlsf.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'        " a better file manager
 
 if has("nvim")
   Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
@@ -89,6 +91,11 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
+" }}}
+
+" ranger {{{
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
 " }}}
 
 " }}}
