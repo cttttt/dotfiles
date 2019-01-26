@@ -9,6 +9,7 @@ task :all => [
   :install_nvim,
   :install_tmux,
   :install_fd,
+  :install_ranger,
   :install_dotfiles,
   :source_bashrc_d,
   :install_vim_plug,
@@ -19,6 +20,16 @@ task :test do
 end
 
 # platform specific tasks
+
+task :install_ranger => [ :install_dotfiles ] do
+  next if system(*%w{which ranger}, :out => '/dev/null', :err => :out)
+
+  if RUBY_PLATFORM =~ /darwin/
+    system(*%w{brew install ranger}) or raise "could not install ranger"
+  else
+    system(*%w{sudo apt install -y ranger}) or raise "could not install ranger"
+  end
+end
 
 task :install_fd => [ :install_dotfiles ] do
   next if File.executable?(File.join(Dir.home, '.cargo/bin/fd')) 
