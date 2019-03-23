@@ -1,5 +1,10 @@
 cd () {
+  if [[ $# == 0 ]]; then
+    command cd "$@"
+  fi
+
   local dir=$1
+
   local prefixes=( '.' "$HOME/src/github.com/cttttt" "$HOME/src/github.com" "$HOME/src/$dir" )
 
   for prefix in "${prefixes[@]}"; do
