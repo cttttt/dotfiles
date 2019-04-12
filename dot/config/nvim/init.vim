@@ -22,9 +22,9 @@ set encoding=utf8
 " vim-plug {{{
 
 if has("nvim")
-  call plug#begin('~/.vim/plugged')
-else
   call plug#begin('~/.config/nvim/plugged')
+else
+  call plug#begin('~/.vim/plugged')
 endif
 
 " plugins {{{
@@ -42,7 +42,6 @@ Plug 'editorconfig/editorconfig-vim'    " interpret editor agnostic configs
 Plug 'tpope/vim-git'                    " syntax files for git commit messages
 Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
-Plug 'fatih/vim-go'                     " go toolchain integration
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
@@ -51,54 +50,16 @@ Plug 'hashivim/vim-terraform'
 Plug 'dyng/ctrlsf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'        " a better file manager
-
-if has("nvim")
-  Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-  Plug '/usr/local/Cellar/global/6.6.1/share/gtags/gtags.vim'
-else
-  Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
-endif
-
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'go get -u github.com/sourcegraph/go-langserver && bash install.sh',
+    \ }
 " }}}
 
 call plug#end()
 
 " }}}
 
-" plugin configuration {{{
-
-" airline {{{
-set laststatus=2                                    " always show airline
-let g:airline#extensions#tabline#enabled = 1        " show buffers up top
-let g:airline#extensions#tabline#fnamemod = ':t'    " only show the filename
-let g:airline#extensions#tabline#buffer_nr_show = 1 " show index of buffers
-" }}}
-
-" ale {{{
-let g:ale_linters = {'go': ['gofmt', 'go lint', 'go vet', 'go build']}
-let g:ale_lint_delay=2000
-" }}}
-
-" vim-go {{{
-let g:go_version_warning = 0
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 1
-let g:go_fmt_command = "goimports"
-" let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_operators = 1
-" let g:go_auto_type_info = 1
-" let g:go_auto_sameids = 1
-" }}}
-
-" ranger {{{
-let g:NERDTreeHijackNetrw = 0
-let g:ranger_replace_netrw = 1
-" }}}
-
-" }}}
 " }}}
 
 " bindings  {{{
@@ -110,14 +71,10 @@ nmap <Leader><C-e> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
-
-let g:go_def_mapping_enabled=0
-autocmd FileType go nnoremap <buffer> <silent> gd :GoDef<cr>
-autocmd FileType go nnoremap <buffer> <silent> <C-]> :GoDef<cr>
-autocmd FileType go nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:GoDef<cr>
-autocmd FileType go nnoremap <buffer> <silent> g<LeftMouse> <LeftMouse>:GoDef<cr>
-autocmd FileType go nnoremap <buffer> <silent> <C-w><C-]> :<C-u>call go#def#Jump("split")<CR>
-autocmd FileType go nnoremap <buffer> <silent> <C-w>] :<C-u>call go#def#Jump("split")<CR>
+autocmd FileType go nnoremap <silent> <leader>h :call LanguageClient_textDocument_hover()<CR>
+autocmd FileType go nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
+autocmd FileType go nnoremap <silent> <leader>fr :call LanguageClient_textDocument_references()<CR>
+autocmd FileType go nnoremap <silent> <leader>m :call LanguageClient_contextMenu()<CR>
 " }}}
 
 " prefs {{{
@@ -167,6 +124,13 @@ endif
 
 " Enable mouse support
 set mouse=a
+
+" Run the language server for Go code
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['go-langserver', '-gocodecompletion']
+    \ }
+
+autocmd FileType go set omnifunc=LanguageClient_complete
 " }}}
 
 " asthetics {{{
@@ -205,7 +169,6 @@ if &term =~ '256color'
   " render properly when inside 256-color tmux and GNU screen.
   set t_ut=
 endif
-
 " }}}
 
 " indentation {{{
