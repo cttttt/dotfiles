@@ -27,4 +27,4 @@ git_branch () {
   echo "$branch"
 }
 
-export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(kube_context) $(git_branch)\n\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(kube_context) $(git_branch)\n\$ '

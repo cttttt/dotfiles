@@ -50,9 +50,13 @@ Plug 'hashivim/vim-terraform'
 Plug 'dyng/ctrlsf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'        " a better file manager
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'go get -u github.com/sourcegraph/go-langserver && bash install.sh',
+"     \ }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'go get -u github.com/sourcegraph/go-langserver && bash install.sh',
+    \ 'do': 'go get -u go get -u golang.org/x/tools/cmd/gopls',
     \ }
 " }}}
 
@@ -75,6 +79,7 @@ autocmd FileType go nnoremap <silent> <leader>h :call LanguageClient_textDocumen
 autocmd FileType go nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
 autocmd FileType go nnoremap <silent> <leader>fr :call LanguageClient_textDocument_references()<CR>
 autocmd FileType go nnoremap <silent> <leader>m :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <leader>m :call LanguageClient_contextMenu()<CR>
 " }}}
 
 " prefs {{{
@@ -126,11 +131,18 @@ endif
 set mouse=a
 
 " Run the language server for Go code
+" let g:LanguageClient_serverCommands = {
+"     \ 'go': ['go-langserver', '-gocodecompletion']
+"     \ }
 let g:LanguageClient_serverCommands = {
-    \ 'go': ['go-langserver', '-gocodecompletion']
+    \ 'go': ['gopls'],
+    \ 'ruby': ['solargraph', 'stdio']
     \ }
 
 autocmd FileType go set omnifunc=LanguageClient_complete
+
+let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 " }}}
 
 " asthetics {{{
