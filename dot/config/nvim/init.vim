@@ -144,6 +144,11 @@ autocmd FileType go set omnifunc=LanguageClient_complete
 
 let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
 autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+
+" let g:LanguageClient_loggingLevel = 'DEBUG'
+" let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
+" let g:LanguageClient_serverStderr = expand('~/.vim/LanguageClient.log')
+
 let g:airline#extensions#tabline#enabled = 1
 " }}}
 
