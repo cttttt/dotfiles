@@ -51,14 +51,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'dyng/ctrlsf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'        " a better file manager
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'go get -u github.com/sourcegraph/go-langserver && bash install.sh',
-"     \ }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'go get -u golang.org/x/tools/cmd/gopls && bash install.sh',
-    \ }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 " }}}
 
 call plug#end()
@@ -76,11 +70,13 @@ nmap <Leader><C-e> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 nmap <Leader>bb :b#<CR>
 nmap <Leader>b3 :b#<CR>
-autocmd FileType go nnoremap <silent> <leader>h :call LanguageClient_textDocument_hover()<CR>
-autocmd FileType go nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
-autocmd FileType go nnoremap <silent> <leader>fr :call LanguageClient_textDocument_references()<CR>
-autocmd FileType go nnoremap <silent> <leader>m :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <leader>m :call LanguageClient_contextMenu()<CR>
+
+autocmd FileType go nnoremap <C-]> :LspDefinition<CR>
+autocmd FileType go nnoremap <Leader>h :LspHover<CR>
+autocmd FileType go nnoremap <Leader>m :LspCodeAction<CR>
+autocmd FileType go nnoremap <Leader>a :LspCodeAction<CR>
+autocmd BufWritePre *.go :LspDocumentFormat
+autocmd FileType go noremap gq :LspDocumentFormatSync
 " }}}
 
 " prefs {{{
@@ -131,23 +127,19 @@ endif
 " Enable mouse support
 set mouse=a
 
-" Run the language server for Go code
-" let g:LanguageClient_serverCommands = {
-"     \ 'go': ['go-langserver', '-gocodecompletion']
-"     \ }
-let g:LanguageClient_serverCommands = {
-    \ 'go': ['gopls'],
-    \ 'ruby': ['solargraph', 'stdio']
-    \ }
+let g:ale_pattern_options = {'\.go$': {'ale_enabled': 1}}
 
-autocmd FileType go set omnifunc=LanguageClient_complete
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
 
-let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+let g:lsp_signs_enabled = 0
 
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-" let g:LanguageClient_loggingFile = expand('~/.vim/LanguageClient.log')
-" let g:LanguageClient_serverStderr = expand('~/.vim/LanguageClient.log')
+autocmd FileType go setlocal omnifunc=lsp#complete
 
 let g:airline#extensions#tabline#enabled = 1
 " }}}
