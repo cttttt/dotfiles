@@ -1,8 +1,4 @@
 " vim:foldmethod=marker
-"
-
-" Helps airline glyphs display in Windows
-set encoding=utf8
 
 " setup tips {{{
 "
@@ -20,7 +16,6 @@ set encoding=utf8
 " }}}
 
 " vim-plug {{{
-
 if has("nvim")
   call plug#begin('~/.config/nvim/plugged')
 else
@@ -28,7 +23,6 @@ else
 endif
 
 " plugins {{{
-
 Plug 'pangloss/vim-javascript'          " javascript movement/syntax
 Plug 'elzr/vim-json'                    " hide quotes in json files
 Plug 'scrooloose/nerdtree'              " file explorer
@@ -43,22 +37,17 @@ Plug 'tpope/vim-git'                    " syntax files for git commit messages
 Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
-Plug 'buc0/my-vim-colors'
 Plug 'chase/focuspoint-vim'
 Plug 'hashivim/vim-terraform'
-Plug 'dyng/ctrlsf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'        " a better file manager
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/vim-lsp'           " language server support
+Plug 'prabirshrestha/async.vim'         "  abstracts over async apis in vim/nvim
 " }}}
 
 call plug#end()
-
-" }}}
-
 " }}}
 
 " bindings  {{{
@@ -68,30 +57,41 @@ nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader><C-e> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
-nmap <Leader>bb :b#<CR>
-nmap <Leader>b3 :b#<CR>
+
+" ctrl-shift-6 is hard to type
+nmap <Leader>bb :b#<CR> 
 
 autocmd FileType go nnoremap <C-]> :LspDefinition<CR>
 autocmd FileType go nnoremap <Leader>h :LspHover<CR>
 autocmd FileType go nnoremap <Leader>m :LspCodeAction<CR>
 autocmd FileType go nnoremap <Leader>a :LspCodeAction<CR>
 autocmd BufWritePre *.go :LspDocumentFormat
-autocmd FileType go noremap gq :LspDocumentFormatSync
+autocmd FileType go nnoremap gq :LspDocumentFormatSync
 " }}}
 
 " prefs {{{
+" Helps airline glyphs display in Windows
+set encoding=utf8
+
+" Keep buffers open when opening new files (emulating tabs in other editors)
 set hidden
 
 " For some reason, on the version of vim I have on my server, json files are
 " taken as Javascript.
 autocmd BufNewFile,BufRead *.json set ft=json
 
-" Finally caving and expanding tabs, for everything but makefiles
+" Finally caving and expanding tabs, for everything but makefiles, and go
 autocmd FileType make set noexpandtab
 autocmd FileType make set tabstop=8
 autocmd FileType make set shiftwidth=8
 autocmd FileType make set softtabstop=8
 
+autocmd FileType go set noexpandtab
+autocmd FileType go set tabstop=8
+autocmd FileType go set shiftwidth=8
+autocmd FileType go set softtabstop=8
+
+" Use even smaller tabstops for ruby
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType ruby set softtabstop=2
 autocmd FileType eruby set shiftwidth=2
@@ -104,31 +104,24 @@ let NERDTreeShowHidden=1
 " Show the help for BufExplorer by default.  The bindings are kinda arbitrary.
 let g:bufExplorerDefaultHelp=1
 
-" I think one of the whole points of BufExplorer is to make it easy to delete
-" NoName buffers.
+" One of the whole points of BufExplorer is to make it easy to delete NoName
+" buffers.
 let g:bufExplorerShowNoName=1
 
 " Ignore editorconfig settings for special views
+" Also ignore editorconfig settings for Go source.  I've set things up so that
+" we format on save, so that should reduce the need for editorconfig.
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*', '*\.go']
-
 set directory-=.
 let &directory=substitute(&directory,',','//,','')
 
-" Bite the bullet and use line numbers
+" Use line numbers
 set number
-
-" Make screen redraws faster with all these complex colours
-" set lazyredraw
-
-if has("nvim")
-  let g:deoplete#enable_at_startup = 1
-endif
 
 " Enable mouse support
 set mouse=a
 
-let g:ale_pattern_options = {'\.go$': {'ale_enabled': 1}}
-
+" Configure vim-lsp for Go
 if executable('gopls')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
@@ -137,19 +130,23 @@ if executable('gopls')
         \ })
 endif
 
+" Neovim doesn't support the signs API vim-lsp uses.  When this is supported,
+" we can disable ale for go source and re-enable lsp's signs support.
 let g:lsp_signs_enabled = 0
 
+" Use vim-lsp for CTRL+X,O while editing go source
 autocmd FileType go setlocal omnifunc=lsp#complete
 
+" Customize airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#overflow_marker = '…'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s·'
 let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#buffers_label = 'bufs'
 " }}}
 
 " asthetics {{{
-
 set termguicolors
 colorscheme focuspoint
 syntax on
@@ -187,7 +184,6 @@ endif
 " }}}
 
 " indentation {{{
-
 " 4 space tabstops, but still display tab characters with an 8
 " character tabstop.
 "
@@ -207,4 +203,4 @@ augroup file_specific_settings
 augroup END
 " }}}
 
-" - chris
+" - by chris w/ ♥
