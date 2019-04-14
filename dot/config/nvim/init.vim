@@ -142,6 +142,10 @@ let g:lsp_signs_enabled = 0
 autocmd FileType go setlocal omnifunc=lsp#complete
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#overflow_marker = '…'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_format = '%s|'
+let g:airline#extensions#tabline#buffer_min_count = 2
 " }}}
 
 " asthetics {{{
