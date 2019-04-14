@@ -57,6 +57,8 @@ nmap <C-e> :NERDTree<CR>
 nmap <Leader>e :NERDTreeFind<CR>
 nmap <Leader><C-e> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
+let NERDTreeHijackNetrw=0
+nmap <Leader>f :RangerCurrentFile<CR>
 
 " ctrl-shift-6 is hard to type
 nmap <Leader>bb :b#<CR> 
@@ -144,6 +146,12 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s·'
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#buffers_label = 'bufs'
+
+" Open ranger instead of netrw
+let g:ranger_replace_netrw = 1
+
+" Disable the default mapping for <Leader>f
+let g:ranger_map_keys = 0
 " }}}
 
 " asthetics {{{
