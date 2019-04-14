@@ -103,7 +103,7 @@ autocmd FileType go nnoremap <C-]> :LspDefinition<CR>
 autocmd FileType go nnoremap <Leader>h :LspHover<CR>
 autocmd FileType go nnoremap <Leader>m :LspCodeAction<CR>
 autocmd FileType go nnoremap <Leader>a :LspCodeAction<CR>
-autocmd BufWritePre *.go :LspDocumentFormat
+autocmd BufWritePre *.go :silent LspDocumentFormatSync
 autocmd FileType go nnoremap gq :LspDocumentFormatSync
 " }}}
 
