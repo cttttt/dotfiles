@@ -46,6 +46,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'buc0/my-vim-colors'
+Plug 'chase/focuspoint-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'dyng/ctrlsf.vim'
 Plug 'rbgrouleff/bclose.vim'
@@ -56,7 +57,7 @@ Plug 'francoiscabrol/ranger.vim'        " a better file manager
 "     \ }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'go get -u go get -u golang.org/x/tools/cmd/gopls',
+    \ 'do': 'go get -u golang.org/x/tools/cmd/gopls && bash install.sh',
     \ }
 " }}}
 
@@ -143,12 +144,13 @@ autocmd FileType go set omnifunc=LanguageClient_complete
 
 let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
 autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+let g:airline#extensions#tabline#enabled = 1
 " }}}
 
 " asthetics {{{
 
 set termguicolors
-colorscheme bdconry
+colorscheme focuspoint
 syntax on
 
 " In gvim, use a font the includes the special powerline symbols.
