@@ -48,7 +48,7 @@ function! InstallLanguageServers(info)
     "
     " - switch to a branch from my fork that uses Imports for formatting
     call system("git -C " . l:gopls_src_dir . " fetch cttttt")
-    call system("git -C " . l:gopls_src_dir . " checkout -B cttttt/" . l:my_bingo_branch)
+    call system("git -C " . l:gopls_src_dir . " checkout -B " . l:my_bingo_branch . " cttttt/" . l:my_bingo_branch)
     "
     " - install the result
     call system("go install golang.org/x/tools/cmd/gopls")
