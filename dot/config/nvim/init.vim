@@ -62,6 +62,7 @@ nmap <Leader>f :RangerCurrentFile<CR>
 
 " ctrl-shift-6 is hard to type
 nmap <Leader>bb :b#<CR> 
+vmap <C-c> "+y
 
 autocmd FileType go nnoremap <C-]> :LspDefinition<CR>
 autocmd FileType go nnoremap <Leader>h :LspHover<CR>
