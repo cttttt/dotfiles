@@ -59,8 +59,6 @@ endfunction
 " plugins {{{
 Plug 'pangloss/vim-javascript'          " javascript movement/syntax
 Plug 'elzr/vim-json'                    " hide quotes in json files
-Plug 'scrooloose/nerdtree'              " file explorer
-Plug 'xuyuanp/nerdtree-git-plugin'      " show git status in nerdtree
 Plug 'bling/vim-airline'                " status bars
 Plug 'vim-airline/vim-airline-themes'   " status bar themes
 Plug 'Raimondi/delimitMate'             " paren/bracket matching
@@ -76,7 +74,7 @@ Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'chase/focuspoint-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'francoiscabrol/ranger.vim'        " a better file manager
+Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
 Plug 'prabirshrestha/vim-lsp', { 'do': function('InstallLanguageServers') }
                                         " language server support
 Plug 'prabirshrestha/async.vim'         "  abstracts over async apis in vim/nvim
@@ -94,6 +92,7 @@ nmap <Leader><C-e> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeHijackNetrw=0
 nmap <Leader>f :RangerCurrentFile<CR>
+nmap <Leader>cd :RangerCD<CR>
 
 " ctrl-shift-6 is hard to type
 nmap <Leader>bb :b#<CR> 
