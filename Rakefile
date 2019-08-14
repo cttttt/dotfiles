@@ -25,9 +25,9 @@ task :install_ranger => [ :install_dotfiles ] do
   next if system(*%w{which ranger}, :out => '/dev/null', :err => :out)
 
   if RUBY_PLATFORM =~ /darwin/
-    system(*%w{brew install ranger}) or raise "could not install ranger"
+     raise "could not install ranger" unless system(*%w{brew install ranger})
   else
-    system(*%w{sudo apt install -y ranger}) or raise "could not install ranger"
+    raise "could not install ranger" unless system(*%w{sudo apt update}) and system(*%w{sudo apt install -y ranger}) 
   end
 end
 
