@@ -4,7 +4,8 @@ FROM ubuntu:18.04
 
 RUN apt update && apt install -y software-properties-common
 RUN add-apt-repository -y ppa:neovim-ppa/stable
-RUN apt-get update && apt install -y rake sudo tmux curl git neovim cargo python ssh golang
+RUN apt-get update && apt install -y rake sudo tmux curl git neovim cargo python ssh unzip
+RUN curl -s -L https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz | tar -xz -C /usr/local
 RUN useradd -m ctaylorr
 USER ctaylorr
 RUN cargo install fd-find
@@ -16,5 +17,6 @@ RUN chown -R ctaylorr /home/ctaylorr
 USER ctaylorr
 WORKDIR /home/ctaylorr
 ENV GOPATH="/home/ctaylorr"
+ENV PATH="/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 CMD [ "bash", "-c", "cd src/github.com/cttttt/dotfiles && rake && exec bash" ]
