@@ -23,37 +23,6 @@ else
 endif
 
 " helpers {{{
-function! InstallLanguageServers(info)
-  if a:info.status == 'installed' || a:info.force
-    " install gopls
-    let l:gopls_package = "golang.org/x/tools"
-    let l:gopls_src_dir = expand("~/src/" . l:gopls_package)
-    let l:my_bingo_branch = "bingo-use-imports-for-full-file-format"
-
-    " setup a directory under the GOPATH for gopls.
-    "
-    " start by creating an official go workspace
-    call system("go get -u " . l:gopls_package)
-    "
-    " then add a few imporatnt remotes
-    "
-    " - official github mirror
-    call system("git -C " . l:gopls_src_dir . " remote add golang git@github.com:golang/tools")
-    "
-    " - official and important fork (bingo branch is where it's at)
-    call system("git -C " . l:gopls_src_dir . " remote add saibing git@github.com:saibing/tools")
-    "
-    " - my fork
-    call system("git -C " . l:gopls_src_dir . " remote add cttttt git@github.com:cttttt/tools")
-    "
-    " - switch to a branch from my fork that uses Imports for formatting
-    call system("git -C " . l:gopls_src_dir . " fetch cttttt")
-    call system("git -C " . l:gopls_src_dir . " checkout -B " . l:my_bingo_branch . " cttttt/" . l:my_bingo_branch)
-    "
-    " - install the result
-    call system("go install golang.org/x/tools/cmd/gopls")
-  endif
-endfunction
 " }}}
 
 " plugins {{{
@@ -75,7 +44,7 @@ Plug 'chase/focuspoint-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
-Plug 'prabirshrestha/vim-lsp', { 'do': function('InstallLanguageServers') }
+Plug 'prabirshrestha/vim-lsp', { 'do': 'go get -u golang.org/x/tools/cmd/gopls' }
                                         " language server support
 Plug 'prabirshrestha/async.vim'         "  abstracts over async apis in vim/nvim
 " }}}
