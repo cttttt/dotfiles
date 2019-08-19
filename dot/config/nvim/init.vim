@@ -55,11 +55,6 @@ call plug#end()
 " bindings  {{{
 let mapleader=';'
 nmap <C-t> :FZF<CR>
-nmap <C-e> :NERDTree<CR>
-nmap <Leader>e :NERDTreeFind<CR>
-nmap <Leader><C-e> :NERDTreeFind<CR>
-let NERDTreeQuitOnOpen=1
-let NERDTreeHijackNetrw=0
 nmap <Leader>f :RangerCurrentFile<CR>
 nmap <Leader>cd :RangerCD<CR>
 
@@ -102,10 +97,6 @@ autocmd FileType ruby set shiftwidth=2
 autocmd FileType ruby set softtabstop=2
 autocmd FileType eruby set shiftwidth=2
 autocmd FileType eruby set softtabstop=2
-
-" Hide node_modules directories in NERDTree.  Show them with 'f'.
-let NERDTreeIgnore=['^node_modules$[[dir]]', '^.git[[dir]]']
-let NERDTreeShowHidden=1
 
 " Show the help for BufExplorer by default.  The bindings are kinda arbitrary.
 let g:bufExplorerDefaultHelp=1
