@@ -41,6 +41,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'chase/focuspoint-vim'
+Plug 'chase/vim-airline-focuspoint'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
