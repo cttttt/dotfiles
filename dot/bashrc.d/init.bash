@@ -16,4 +16,5 @@ USAGE
   slug="$1"
 
   git init "$repo_base_dir/$slug" 
+  cd "$_"
 }
