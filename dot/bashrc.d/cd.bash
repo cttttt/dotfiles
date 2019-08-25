@@ -1,6 +1,7 @@
 cd () {
   if [[ $# == 0 ]]; then
     command cd "$@"
+    return "$?"
   fi
 
   local dir=$1
@@ -11,7 +12,7 @@ cd () {
     local project_dir="$prefix/$dir"
     if [[ -d "$project_dir" ]]; then
       command cd "$project_dir"
-      return
+      return "$?"
     fi
   done
 
