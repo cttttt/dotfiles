@@ -1,5 +1,5 @@
 cd () {
-  if [[ $# == 0 ]]; then
+  if [[ $# == 0 || $1 =~ ^/+ ]]; then
     command cd "$@"
     return "$?"
   fi
