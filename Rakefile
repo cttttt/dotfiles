@@ -88,7 +88,7 @@ task :install_vim_plug => [ :install_dotfiles ] do
 end
 
 task :source_bashrc_d do
-  source_bashrc_star = 'for file in ~/.bashrc.d/*; do source "$file"; done'
+  source_bashrc_star = 'for file in ~/.bashrc.d/*.bash; do source "$file"; done'
   bashrc_path = File.join(Dir.home, '.bashrc')
 
   contains_source_bashrc_star = if File.exists?(bashrc_path)
