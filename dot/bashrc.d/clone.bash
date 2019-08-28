@@ -14,13 +14,13 @@ USAGE
   local slug=
 
   while true; do
-    if [[ "$repo" =~ .+?@.+?:.+?\/.+$ ]]; then
+    if [[ "$repo" =~ ^.+?@.+?:.+?/.+$ ]]; then
       user="${repo%%@*}"
       repo="${repo#*@}"
-    elif [[ "$repo" =~ .+?:.+?\/.+$ ]]; then
+    elif [[ "$repo" =~ ^.+?:.+?/.+$ ]]; then
       host="${repo%%:*}"
       repo="${repo#*:}"
-    elif [[ "$repo" =~ .+?\/.+$ ]]; then
+    elif [[ "$repo" =~ ^.+/.+$ ]]; then
       org="${repo%%/*}"
       repo="${repo#*/}"
     else
