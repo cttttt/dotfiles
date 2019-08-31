@@ -45,7 +45,7 @@ Plug 'chase/vim-airline-focuspoint'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh; go get -u golang.org/x/tools/cmd/gopls' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh; GOPATH=~ go get -u golang.org/x/tools/cmd/gopls' }
 " }}}
 
 call plug#end()
