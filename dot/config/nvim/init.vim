@@ -45,9 +45,7 @@ Plug 'chase/vim-airline-focuspoint'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
-Plug 'prabirshrestha/vim-lsp', { 'do': 'go get -u golang.org/x/tools/cmd/gopls' }
-                                        " language server support
-Plug 'prabirshrestha/async.vim'         "  abstracts over async apis in vim/nvim
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh; go get -u golang.org/x/tools/cmd/gopls' }
 " }}}
 
 call plug#end()
@@ -63,12 +61,13 @@ nmap <Leader>cd :RangerCD<CR>
 nmap <Leader>bb :b#<CR> 
 vmap <C-c> "+y
 
-autocmd FileType go nnoremap <C-]> :LspDefinition<CR>
-autocmd FileType go nnoremap <Leader>h :LspHover<CR>
-autocmd FileType go nnoremap <Leader>m :LspCodeAction<CR>
-autocmd FileType go nnoremap <Leader>a :LspCodeAction<CR>
-autocmd BufWritePre *.go :silent LspDocumentFormatSync
-autocmd FileType go nnoremap gq :LspDocumentFormatSync
+" lsp bindings
+autocmd FileType go nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType go nnoremap <Leader>h :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType go nnoremap <Leader>m :call LanguageClient_contextMenu()<CR>
+autocmd FileType go nnoremap <Leader>m :call LanguageClient_contextMenu()<CR>
+autocmd BufWritePre *.go :silent call LanguageClient#textDocument_formatting()
+autocmd FileType go nnoremap gq :call LanguageClient#textDocument_formatting()
 " }}}
 
 " prefs {{{
@@ -119,21 +118,9 @@ set number
 " Enable mouse support
 set mouse=a
 
-" Configure vim-lsp for Go
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
 " Neovim doesn't support the signs API vim-lsp uses.  When this is supported,
 " we can disable ale for go source and re-enable lsp's signs support.
 let g:lsp_signs_enabled = 0
-
-" Use vim-lsp for CTRL+X,O while editing go source
-autocmd FileType go setlocal omnifunc=lsp#complete
 
 " Customize airline
 let g:airline#extensions#tabline#enabled = 1
@@ -148,6 +135,10 @@ let g:ranger_replace_netrw = 1
 
 " Disable the default mapping for <Leader>f
 let g:ranger_map_keys = 0
+
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['gopls'],
+    \ }
 " }}}
 
 " asthetics {{{
