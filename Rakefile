@@ -3,33 +3,6 @@ require 'find'
 require 'fileutils'
 require 'net/http'
 
-def which(command)
-  system('which', command, :out => '/dev/null', :err => :out)
-end
-
-def osx?
-  RUBY_PLATFORM.match(/darwin/)
-end
-
-def brew_install(packages, head: false)
-  system(
-    'brew',
-    'install',
-    *(head ? ['--HEAD'] : []),
-    *packages
-  )
-end
-
-def apt_add_repo(repo)
-  system('sudo', 'add-apt-repository', '-y', repo)
-end
-
-def apt_install(packages, repos:[])
-  system('sudo', 'apt', 'update') &&
-    repos.all? { |repo| apt_add_repo(repo) } &&
-    system('sudo', 'apt', 'install', '-y', *packages)
-end
-
 task default: :all
   
 task :all => [
@@ -179,3 +152,31 @@ task :install_dotfiles do
     end
   end
 end
+
+def which(command)
+  system('which', command, :out => '/dev/null', :err => :out)
+end
+
+def osx?
+  RUBY_PLATFORM.match(/darwin/)
+end
+
+def brew_install(packages, head: false)
+  system(
+    'brew',
+    'install',
+    *(head ? ['--HEAD'] : []),
+    *packages
+  )
+end
+
+def apt_add_repo(repo)
+  system('sudo', 'add-apt-repository', '-y', repo)
+end
+
+def apt_install(packages, repos:[])
+  system('sudo', 'apt', 'update') &&
+    repos.all? { |repo| apt_add_repo(repo) } &&
+    system('sudo', 'apt', 'install', '-y', *packages)
+end
+
