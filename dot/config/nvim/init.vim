@@ -141,6 +141,17 @@ let g:LanguageClient_serverCommands = {
     \ }
 " }}}
 
+let g:LanguageClient_diagnosticsSignsMax = 0
+let g:LanguageClient_hasSnippetSupport = 1
+let g:LanguageClient_useFloatingHover = 1
+let g:LanguageClient_useVirtualText = 1
+let g:LanguageClient_changeThrottle = 0.5
+let g:LanguageClient_virtualTextPrefix = "    •••➜ "
+let g:LanguageClient_diagnosticsList = "Location"
+let g:LanguageClient_selectionUI = "location-list"
+let g:LanguageClient_hoverpreview = "Always"
+let g:ale_linters = {'go': []}
+
 " asthetics {{{
 set termguicolors
 colorscheme focuspoint
