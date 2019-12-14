@@ -2,7 +2,7 @@
 
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y software-properties-common
+RUN apt update && apt install -y software-properties-common build-essential
 RUN add-apt-repository -y ppa:neovim-ppa/stable
 RUN apt-get update && apt install -y rake sudo tmux curl git neovim cargo python ssh unzip
 RUN curl -s -L https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz | tar -xz -C /usr/local
