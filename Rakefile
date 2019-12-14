@@ -33,6 +33,7 @@ end
 task default: :all
   
 task :all => [
+  :install_lazygit,
   :install_nvim,
   :install_tmux,
   :install_fd,
@@ -47,6 +48,15 @@ task :test do
 end
 
 # platform specific tasks
+task :install_lazygit do
+  next if which('lazygit')
+
+  raise 'could not install lazygit' unless if osx?
+    brew_install('lazygit')
+  else
+    apt_install('lazygit', repos: ['ppa:lazygit-team/release'])
+  end
+end
 
 task :install_ranger => [ :install_dotfiles ] do
   next if which('ranger')
