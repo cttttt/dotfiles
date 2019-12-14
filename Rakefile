@@ -3,6 +3,33 @@ require 'find'
 require 'fileutils'
 require 'net/http'
 
+def which(command)
+  system('which', command, :out => '/dev/null', :err => :out)
+end
+
+def osx?
+  RUBY_PLATFORM.match(/darwin/)
+end
+
+def brew_install(packages, head: false)
+  system(
+    'brew',
+    'install',
+    *(head ? ['--HEAD'] : []),
+    *packages
+  )
+end
+
+def apt_add_repo(repo)
+  system('sudo', 'add-apt-repository', '-y', repo)
+end
+
+def apt_install(packages, repos:[])
+  system('sudo', 'apt', 'update') &&
+    repos.all? { |repo| apt_add_repo(repo) } &&
+    system('sudo', 'apt', 'install', '-y', *packages)
+end
+
 task default: :all
   
 task :all => [
@@ -22,58 +49,60 @@ end
 # platform specific tasks
 
 task :install_ranger => [ :install_dotfiles ] do
-  next if system(*%w{which ranger}, :out => '/dev/null', :err => :out)
+  next if which('ranger')
 
-  if RUBY_PLATFORM =~ /darwin/
-     raise "could not install ranger" unless system(*%w{brew install ranger})
+  raise 'could not install ranger' unless if osx?
+    brew_install('ranger')
   else
-    raise "could not install ranger" unless system(*%w{sudo apt update}) and system(*%w{sudo apt install -y ranger}) 
+    apt_install('ranger')
   end
 end
 
 task :install_fd => [ :install_dotfiles ] do
   next if File.executable?(File.join(Dir.home, '.cargo/bin/fd')) 
-  next if system(*%w{which fd}, :out => '/dev/null', :err => :out)
+  next if which('fd')
 
-  if RUBY_PLATFORM =~ /darwin/
-    system(*%w{brew install fd}) or raise "could not install fd"
+  raise 'could not install fd' unless if osx?
+    brew_install('fd')
   else
-    system(*%w{cargo install fd-find}) or raise "could not install fd.  Is rust install?"
+    system(*%w{cargo install fd-find})
   end
 end
 
 task :install_nvim do
-  next if system(*%w{which nvim}, :out => '/dev/null', :err => :out)
+  next if which('nvim')
 
   if RUBY_PLATFORM =~ /darwin/
-    system(*%w{brew install neovim}) or raise "could not install neovim"
+    brew_install('neovim', head: true) or raise "could not install neovim"
   else
-    system(*%w{sudo apt install -y software-properties-common}) or raise "could not install add-apt-repository"
-    system(*%w{sudo add-apt-repository -y ppa:neovim-ppa/stable}) or raise "could not add ppa"
+    apt_install(
+      'software-properties-common',
+      repos: ['ppa:neovim-ppa/stable'],
+    ) or raise "could not install software-properties-common"
     system(*%w{sudo apt update}) or raise "could not apt-get update"
-    system(*%w{sudo apt install -y neovim}) or raise "could not install neovim"
+    apt_install('neovim') or raise "could not install neovim"
   end
 end
 
 task :install_tmux do
-  next if system(*%w{which tmux}, :out => '/dev/null', :err => :out)
+  next if which('tmux')
 
-  if RUBY_PLATFORM =~ /darwin/
-    system(*%w{brew install tmux}) or raise "could not install tmux"
+  raise 'could not install tmux' unless if osx?
+    brew_install('tmux')
   else
-    system(*%w{sudo apt update}) or raise "could not apt-get update"
-    system(*%w{sudo apt install -y tmux}) or raise "could not install tmux"
+    apt_install('tmux')
   end
 end
 
 # platform neutral tasks
 
 task :install_vim_plug => [ :install_dotfiles ] do
-  plug_vim_file = Net::HTTP.get(URI('https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'))
   vim_plug_install_dir = File.join(Dir.home, '.config/nvim/autoload')
-  vim_plug_install_file = File.join("#{vim_plug_install_dir}/plug.vim")
+  vim_plug_install_file = File.join(vim_plug_install_dir, 'plug.vim')
 
   next if File.exists?(vim_plug_install_file)
+
+  plug_vim_file = Net::HTTP.get(URI('https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'))
 
   Dir.mkdir(vim_plug_install_dir)
   File.open(vim_plug_install_file, 'w') do |plug_vim|
