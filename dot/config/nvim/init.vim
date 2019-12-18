@@ -56,6 +56,7 @@ let mapleader=';'
 nmap <C-t> :FZF<CR>
 nmap <Leader>f :RangerCurrentFile<CR>
 nmap <Leader>cd :RangerCD<CR>
+nmap <Leader>lg :term lazygit<CR>
 
 " ctrl-shift-6 is hard to type
 nmap <Leader>bb :b#<CR> 
