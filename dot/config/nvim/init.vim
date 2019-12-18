@@ -139,7 +139,6 @@ let g:ranger_map_keys = 0
 let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ }
-" }}}
 
 let g:LanguageClient_diagnosticsSignsMax = 0
 let g:LanguageClient_hasSnippetSupport = 1
@@ -151,6 +150,7 @@ let g:LanguageClient_diagnosticsList = "Location"
 let g:LanguageClient_selectionUI = "location-list"
 let g:LanguageClient_hoverpreview = "Always"
 let g:ale_linters = {'go': []}
+" }}}
 
 " asthetics {{{
 set termguicolors
