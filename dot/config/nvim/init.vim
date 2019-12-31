@@ -136,7 +136,6 @@ let g:ranger_replace_netrw = 1
 
 " Disable the default mapping for <Leader>f
 let g:ranger_map_keys = 0
-
 let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ }
@@ -151,6 +150,9 @@ let g:LanguageClient_diagnosticsList = "Location"
 let g:LanguageClient_selectionUI = "location-list"
 let g:LanguageClient_hoverpreview = "Always"
 let g:ale_linters = {'go': []}
+
+" Reduce the delay after pressing escape
+set timeoutlen=1000 ttimeoutlen=0
 " }}}
 
 " asthetics {{{
