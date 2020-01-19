@@ -2,4 +2,4 @@
 export GOPATH=~
 
 # Have the PATH include the default GO binary path
-export PATH=$PATH:~/go/bin
+export PATH=~/go/bin:$PATH
