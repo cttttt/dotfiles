@@ -24,11 +24,8 @@ end
 task :install_lazygit do
   next if which('lazygit')
 
-  raise 'could not install lazygit' unless if osx?
-    brew_install('lazygit')
-  else
-    apt_install('lazygit', repos: ['ppa:lazygit-team/release'])
-  end
+  raise 'could not install lazygit' unless \
+    system(ENV.reject { |k| k == 'GOPATH'}, *%w{go get github.com/jesseduffield/lazygit})
 end
 
 task :install_ranger => [ :install_dotfiles ] do
