@@ -63,12 +63,16 @@ nmap <Leader>bb :b#<CR>
 vmap <C-c> "+y
 
 " lsp bindings
+
+" go
 autocmd FileType go nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
 autocmd FileType go nnoremap <Leader>h :call LanguageClient#textDocument_hover()<CR>
 autocmd FileType go nnoremap <Leader>m :call LanguageClient_contextMenu()<CR>
 autocmd FileType go nnoremap <Leader>m :call LanguageClient_contextMenu()<CR>
 autocmd BufWritePre *.go :silent call LanguageClient#textDocument_formatting()
 autocmd FileType go nnoremap gq :call LanguageClient#textDocument_formatting()
+autocmd FileType go set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+
 " }}}
 
 " prefs {{{
@@ -119,10 +123,6 @@ set number
 " Enable mouse support
 set mouse=a
 
-" Neovim doesn't support the signs API vim-lsp uses.  When this is supported,
-" we can disable ale for go source and re-enable lsp's signs support.
-let g:lsp_signs_enabled = 0
-
 " Customize airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#overflow_marker = '…'
@@ -140,7 +140,7 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ }
 
-let g:LanguageClient_diagnosticsSignsMax = 0
+let g:LanguageClient_diagnosticsSignsMax = 1
 let g:LanguageClient_hasSnippetSupport = 1
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_useVirtualText = "All"
@@ -153,6 +153,9 @@ let g:ale_linters = {'go': []}
 
 " Reduce the delay after pressing escape
 set timeoutlen=1000 ttimeoutlen=0
+
+let g:float_preview#docked = 0
+set winblend=1
 " }}}
 
 " asthetics {{{
