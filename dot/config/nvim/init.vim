@@ -37,15 +37,15 @@ Plug 'editorconfig/editorconfig-vim'    " interpret editor agnostic configs
 Plug 'tpope/vim-git'                    " syntax files for git commit messages
 Plug 'ryanoasis/vim-devicons'           " glyphs for nerdtree/airline
 Plug 'w0rp/ale'                         " async linting engine
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'tpope/vim-rhubarb'                " Gbrowse support for GitHub
 Plug 'chase/focuspoint-vim'
 Plug 'chase/vim-airline-focuspoint'
 Plug 'hashivim/vim-terraform'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'cttttt/ranger.vim', { 'branch': 'add-ranger-cd' }        " a better file manager
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh; unset GOPATH; GO111MODULE=on go get golang.org/x/tools/gopls@latest' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh && unset GOPATH; GO111MODULE=on go get golang.org/x/tools/gopls@latest' }
 " }}}
 
 call plug#end()
@@ -156,6 +156,7 @@ set timeoutlen=1000 ttimeoutlen=0
 
 let g:float_preview#docked = 0
 set winblend=1
+let g:LanguageClient_selectionUI = 'FZF'
 " }}}
 
 " asthetics {{{

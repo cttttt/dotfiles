@@ -50,7 +50,7 @@ task :install_fd => [ :install_dotfiles ] do
 end
 
 task :install_nvim do
-  next if which('nvim')
+  next if which('nvim') && nvim_version(0,4,0)
 
   if RUBY_PLATFORM =~ /darwin/
     brew_install('neovim', head: true) or raise "could not install neovim"
@@ -148,6 +148,19 @@ task :install_dotfiles do
       end
     end
   end
+end
+
+def nvim_version
+  IO.popen('nvim -version').first.chomp.sub(/.*v/, '').split('.').map(&:to_i)
+end
+
+def nvim_version_at_least?(major, minor, fix)
+  nvim_major, nvim_minor, nvim_fix = nvim_version
+
+  return false if nvim_major < major 
+  return false if nvim_minor < minor 
+  return false if nvim_fix < fix 
+  true
 end
 
 def which(command)
