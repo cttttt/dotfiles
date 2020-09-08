@@ -7,3 +7,4 @@ else
 fi
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview='test -d {} || bat --style=numbers --color=always {}'"
