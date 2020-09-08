@@ -2,6 +2,7 @@ require 'erb'
 require 'find'
 require 'fileutils'
 require 'net/http'
+require 'tmpdir'
 
 task default: :all
   
@@ -10,7 +11,9 @@ task :all => [
   :install_nvim,
   :install_tmux,
   :install_fd,
+  :install_bat,
   :install_ranger,
+  :install_ag,
   :install_dotfiles,
   :source_bashrc_d,
   :install_vim_plug,
@@ -73,6 +76,27 @@ task :install_tmux do
     apt_install('tmux')
   end
 end
+
+task :install_bat do
+  next if which('bat')
+
+  raise 'could not install bat' unless if osx?
+    brew_install('bat')
+  else
+    deb_install('https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb')
+  end
+end
+
+task :install_ag do
+  next if which('ag')
+
+  raise 'could not install ag' unless if osx?
+    brew_install('ag')
+  else
+    apt_install('silversearcher-ag')
+  end
+end
+
 
 # platform neutral tasks
 
@@ -178,6 +202,14 @@ def brew_install(packages, head: false)
     *(head ? ['--HEAD'] : []),
     *packages
   )
+end
+
+def deb_install(deb)
+  Dir.mktmpdir do |dir|
+    package_filename = File.join(dir, 'package.deb')
+    system('curl', '--location', '-o', package_filename, deb) &&
+      system('sudo', 'dpkg' , '-i', package_filename)
+  end
 end
 
 def apt_add_repo(repo)
