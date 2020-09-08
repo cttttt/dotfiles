@@ -91,7 +91,7 @@ task :install_ag do
   next if which('ag')
 
   raise 'could not install ag' unless if osx?
-    brew_install('ag')
+    brew_install('the_silver_searcher')
   else
     apt_install('silversearcher-ag')
   end
