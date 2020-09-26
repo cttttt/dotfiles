@@ -2,8 +2,5 @@ ForwardAgent yes
 IdentityFile ~/.ssh/id_%u
 IdentityFile ~/.ssh/id_rsa
 Compression yes
-<% if RUBY_PLATFORM =~ /darwin/ %>
-UseKeychain yes
-<% end %>
 AddKeysToAgent yes
 Include config.d/*.config
