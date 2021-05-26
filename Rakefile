@@ -7,6 +7,10 @@ require 'tmpdir'
 task default: :all
   
 task :all => [
+  :install_dotfiles,
+  :source_bashrc_d,
+  :install_golang,
+  :install_rust,
   :install_lazygit,
   :install_nvim,
   :install_tmux,
@@ -14,8 +18,6 @@ task :all => [
   :install_bat,
   :install_ranger,
   :install_ag,
-  :install_dotfiles,
-  :source_bashrc_d,
   :install_vim_plug,
 ]
 
@@ -29,6 +31,26 @@ task :install_lazygit do
 
   raise 'could not install lazygit' unless \
     system(ENV.reject { |k| k == 'GOPATH'}, *%w{go get github.com/jesseduffield/lazygit})
+end
+
+task :install_golang do
+  next if which('go')
+
+  raise 'could not install go lang toolchain' unless if osx?
+    brew_install('golang')
+  else
+    apt_install('golang')
+  end
+end
+
+task :install_rust do
+  next if which('rustc')
+
+  raise 'could not install rust toolchain' unless if osx?
+    brew_install('rust')
+  else
+    apt_install('rust')
+  end
 end
 
 task :install_ranger => [ :install_dotfiles ] do
@@ -175,7 +197,7 @@ task :install_dotfiles do
 end
 
 def nvim_version
-  IO.popen('nvim -version').first.chomp.sub(/.*v/, '').split('.').map(&:to_i)
+  IO.popen('nvim -version').first.chomp.sub(/.*?v/, '').split(/[.-]/).map(&:to_i)
 end
 
 def nvim_version_at_least?(major, minor, fix)
