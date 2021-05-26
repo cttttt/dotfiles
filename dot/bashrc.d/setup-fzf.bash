@@ -8,3 +8,9 @@ fi
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview='test -d {} || bat --style=numbers --color=always {}'"
+
+fzf_keybindings_script=~/.config/nvim/plugged/fzf/shell/key-bindings.bash
+
+if [[ -f $fzf_keybindings_script ]]; then
+  source "$fzf_keybindings_script"
+fi
