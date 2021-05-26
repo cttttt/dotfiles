@@ -1,10 +1,10 @@
 kube_context () {
   local context
-  context=$(kubectl config current-context 2>/dev/null)
   local docker_glyph=''
+  context=$(kubectl config current-context 2>/dev/null)
 
   if [[ $? == 0 ]]; then
-    context="[${docker_glyph} ${context}]"
+    context="[${docker_glyph} ${context}] "
   else
     context=""
   fi
@@ -27,4 +27,4 @@ git_branch () {
   echo "$branch"
 }
 
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(kube_context) $(git_branch)\n\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(kube_context)$(git_branch)\n\$ '
