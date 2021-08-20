@@ -12,7 +12,6 @@ return require('packer').startup(function()
     run = './install --all'
   }
   use 'junegunn/fzf.vim'
-  use 'chase/focuspoint-vim'
   use 'chase/vim-airline-focuspoint'
   use 'vim-scripts/bufexplorer.zip'
   use 'tpope/vim-git'
@@ -27,6 +26,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'sainnhe/sonokai'
 
   -- required by ranger
   use 'rbgrouleff/bclose.vim'
