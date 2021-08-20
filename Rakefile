@@ -148,7 +148,6 @@ task :install_vim_packer => [ :install_dotfiles ] do
     '--cmd', 'source ~/.config/nvim/init.lua',
     '--cmd', 'autocmd User PackerComplete qa!',
     '--cmd', 'PackerSync',
-    :out => '/dev/null', :err => :out
   )
 end
 
