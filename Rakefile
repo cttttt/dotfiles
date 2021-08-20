@@ -18,7 +18,7 @@ task :all => [
   :install_bat,
   :install_ranger,
   :install_ag,
-  :install_vim_plug,
+  :install_vim_packer,
 ]
 
 task :test do
@@ -122,25 +122,28 @@ end
 
 # platform neutral tasks
 
-task :install_vim_plug => [ :install_dotfiles ] do
-  vim_plug_install_dir = File.join(Dir.home, '.config/nvim/autoload')
-  vim_plug_install_file = File.join(vim_plug_install_dir, 'plug.vim')
+task :install_vim_packer => [ :install_dotfiles ] do
+  vim_packer_file = "#{Dir.home}/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
-  next if File.exists?(vim_plug_install_file)
+  next if File.exists?(vim_packer_file)
 
-  plug_vim_file = Net::HTTP.get(URI('https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'))
+  system(
+    'git',
+    'clone',
+    'https://github.com/wbthomason/packer.nvim',
+    vim_packer_file,
+  ) 
 
-  Dir.mkdir(vim_plug_install_dir)
-  File.open(vim_plug_install_file, 'w') do |plug_vim|
-    plug_vim.write(plug_vim_file)
-  end
-  
-  install_plug_command = [ *%w{nvim --cmd}, 'set shortmess=a', '--cmd', 'source ~/.vimrc', '--cmd', 'PlugInstall', '--cmd', 'qa!' ]
-
-  3.times do
-    system(*install_plug_command, :out => '/dev/null', :err => :out)
-  end
+  system(
+    'nvim',
+    '--cmd', 'set shortmess=a',
+    '--cmd', 'source ~/.config/nvim/init.lua',
+    '--cmd', 'autocmd User PackerComplete qa!',
+    '--cmd', 'PackerSync',
+    :out => '/dev/null', :err => :out
+  )
 end
+
 
 task :source_bashrc_d do
   source_bashrc_star = 'for file in ~/.bashrc.d/*.bash; do source "$file"; done'
