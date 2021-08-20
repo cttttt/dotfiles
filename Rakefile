@@ -19,6 +19,7 @@ task :all => [
   :install_ranger,
   :install_ag,
   :install_vim_packer,
+  :install_gopls,
 ]
 
 task :test do
@@ -121,6 +122,13 @@ end
 
 
 # platform neutral tasks
+
+task :install_gopls do
+  next if which('gopls')
+
+  raise 'could not install gopls' unless \
+    system(ENV.reject { |k| k == 'GOPATH' }.merge('GO111MODULE' => 'on'), *%w{go get golang.org/x/tools/gopls@latest})
+end
 
 task :install_vim_packer => [ :install_dotfiles ] do
   vim_packer_file = "#{Dir.home}/.local/share/nvim/site/pack/packer/start/packer.nvim"
