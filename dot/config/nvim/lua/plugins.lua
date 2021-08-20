@@ -27,6 +27,7 @@ return require('packer').startup(function()
     run = ':TSUpdate'
   }
   use 'sainnhe/sonokai'
+  use 'neovim/nvim-lspconfig'
 
   -- required by ranger
   use 'rbgrouleff/bclose.vim'
