@@ -70,3 +70,18 @@ vim.api.nvim_set_var(
   'airline#extensions#tabline#ignore_bufadd_pat',
   'defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 )
+
+-- treesitter
+pcall(function ()
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    ignore_install = { },
+    highlight = {
+      enable = true,
+      disable = { },
+    },
+    indent = {
+      enable = true
+    }
+  }
+end)

@@ -23,6 +23,10 @@ return require('packer').startup(function()
     'cttttt/ranger.vim',
     branch = 'add-ranger-cd'
   }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
 
   -- required by ranger
   use 'rbgrouleff/bclose.vim'
