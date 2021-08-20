@@ -241,6 +241,6 @@ end
 def apt_install(packages, repos:[])
   system('sudo', 'apt', 'update') &&
     repos.all? { |repo| apt_add_repo(repo) or raise "could not add apt repo: #{repo}" } and
-    system('sudo', 'apt-get', '--only-upgrade', 'install', *packages) and
-    system('sudo', 'apt', 'install', *packages)
+    system('sudo', 'apt-get', '--only-upgrade', 'install', '-y', *packages) and
+    system('sudo', 'apt', 'install', '-y', *packages)
 end
