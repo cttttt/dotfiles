@@ -60,16 +60,13 @@ vim.g.bufExplorerDefaultHelp = 1
 vim.g.bufExplorerShowNoName = 1
 
 -- airline
-vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1)
-vim.api.nvim_set_var('airline#extensions#tabline#overflow_marker', '…')
-vim.api.nvim_set_var('airline#extensions#tabline#buffer_nr_show', 1)
-vim.api.nvim_set_var('airline#extensions#tabline#buffer_nr_format', '%s·')
-vim.api.nvim_set_var('airline#extensions#tabline#buffer_min_count', 2)
-vim.api.nvim_set_var('airline#extensions#tabline#buffers_label', 'bufs')
-vim.api.nvim_set_var(
-  'airline#extensions#tabline#ignore_bufadd_pat',
-  'defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
-)
+vim.g['airline#extensions#tabline#enabled'] = 1
+vim.g['airline#extensions#tabline#overflow_marker'] = '…'
+vim.g['airline#extensions#tabline#buffer_nr_show'] = 1
+vim.g['airline#extensions#tabline#buffer_nr_format'] = '%s·'
+vim.g['airline#extensions#tabline#buffer_min_count'] = 2
+vim.g['airline#extensions#tabline#buffers_label'] = 'bufs'
+vim.g['airline#extensions#tabline#ignore_bufadd_pat'] = 'defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 
 -- treesitter
 pcall(function ()
