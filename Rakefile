@@ -75,14 +75,14 @@ task :install_fd => [ :install_dotfiles ] do
 end
 
 task :install_nvim do
-  next if which('nvim') && nvim_version_at_least?(0,4,0)
+  next if which('nvim') && nvim_version_at_least?(0,5,0)
 
   if RUBY_PLATFORM =~ /darwin/
     brew_install('neovim', head: true) or raise "could not install neovim"
   else
     apt_install(
       'software-properties-common',
-      repos: ['ppa:neovim-ppa/stable'],
+      repos: ['ppa:neovim-ppa/unstable'],
     ) or raise "could not install software-properties-common"
     system(*%w{sudo apt update}) or raise "could not apt-get update"
     apt_install('neovim') or raise "could not install neovim"
