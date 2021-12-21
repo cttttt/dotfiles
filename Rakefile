@@ -20,6 +20,7 @@ task :all => [
   :install_ag,
   :install_vim_packer,
   :install_gopls,
+  :install_bash_completion,
 ]
 
 task :test do
@@ -32,6 +33,25 @@ task :install_lazygit do
 
   raise 'could not install lazygit' unless \
     system(ENV.reject { |k| k == 'GOPATH'}, *%w{go get github.com/jesseduffield/lazygit})
+end
+
+task :install_bash_completion do
+  bash_completion_installed = [
+    '/usr/share/bash-completion/bash_completion',
+    '/etc/bash_completion',
+    '/usr/local/etc/bash_completion',
+    '/opt/homebrew/etc/profile.d/bash_completion.sh'
+  ].find do |script|
+    File.exist?(script)
+  end
+
+  next if bash_completion_installed
+
+  raise 'could not install go lang toolchain' unless if osx?
+    brew_install('bash-completion')
+  else
+    apt_install('bash-completion')
+  end
 end
 
 task :install_golang do
