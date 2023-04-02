@@ -71,7 +71,6 @@ vim.g['airline#extensions#tabline#ignore_bufadd_pat'] = 'defx|gundo|nerd_tree|st
 -- treesitter
 pcall(function ()
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
     ignore_install = { },
     highlight = {
       enable = true,
