@@ -147,7 +147,7 @@ task :install_gopls do
   next if which('gopls')
 
   raise 'could not install gopls' unless \
-    system(ENV.reject { |k| k == 'GOPATH' }.merge('GO111MODULE' => 'on'), *%w{go get golang.org/x/tools/gopls@latest})
+    system(ENV.reject { |k| k == 'GOPATH' }, *%w{go install golang.org/x/tools/gopls@latest})
 end
 
 task :install_vim_packer => [ :install_dotfiles ] do
