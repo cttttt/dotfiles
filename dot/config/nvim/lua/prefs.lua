@@ -153,6 +153,8 @@ vim.diagnostic.config({
 
 end)
 
+
+pcall(function ()
 -- mason
 require("mason").setup({
     ui = {
@@ -164,4 +166,5 @@ require("mason").setup({
     }
 })
 require("mason-lspconfig").setup()
-
+end
+)
