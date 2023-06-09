@@ -32,7 +32,7 @@ task :install_lazygit do
   next if which('lazygit')
 
   raise 'could not install lazygit' unless \
-    system(ENV.reject { |k| k == 'GOPATH'}, *%w{go get github.com/jesseduffield/lazygit})
+    system(ENV.reject { |k| k == 'GOPATH'}, *%w{go install github.com/jesseduffield/lazygit@latest})
 end
 
 task :install_bash_completion do
