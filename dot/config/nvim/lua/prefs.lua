@@ -120,13 +120,48 @@ local on_attach = function(client, bufnr)
 
 end
 
-local servers = { 'gopls' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+local lsp_servers = { 'gopls', 'rust_analyzer' }
+local lsp_settings = {
+  gopls = {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     }
-  }
+  },
+  rust_analyzer = {
+    on_attach = on_attach,
+  },
+}
+
+for _, lsp in ipairs(lsp_servers) do
+  nvim_lsp[lsp].setup(lsp_settings[lsp])
 end
+
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    severity_sort = false,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
+
 end)
+
+-- mason
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "",
+            package_pending = "",
+            package_uninstalled = "",
+        },
+    }
+})
+require("mason-lspconfig").setup()
+
