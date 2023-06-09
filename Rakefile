@@ -164,6 +164,7 @@ task :install_vim_packer => [ :install_dotfiles ] do
 
   system(
     'nvim',
+    '--headless',
     '--cmd', 'set shortmess=a',
     '--cmd', 'source ~/.config/nvim/init.lua',
     '--cmd', 'autocmd User PackerComplete qa!',
