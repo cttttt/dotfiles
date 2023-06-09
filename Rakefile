@@ -19,7 +19,6 @@ task :all => [
   :install_ranger,
   :install_ag,
   :install_vim_packer,
-  :install_gopls,
   :install_bash_completion,
 ]
 
@@ -143,13 +142,6 @@ end
 
 # platform neutral tasks
 
-task :install_gopls do
-  next if which('gopls')
-
-  raise 'could not install gopls' unless \
-    system(ENV.reject { |k| k == 'GOPATH' }, *%w{go install golang.org/x/tools/gopls@latest})
-end
-
 task :install_vim_packer => [ :install_dotfiles ] do
   vim_packer_file = "#{Dir.home}/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
@@ -169,6 +161,15 @@ task :install_vim_packer => [ :install_dotfiles ] do
     '--cmd', 'source ~/.config/nvim/init.lua',
     '--cmd', 'autocmd User PackerComplete qa!',
     '--cmd', 'PackerSync',
+  )
+
+  system(
+    'nvim',
+    '--headless',
+    '--cmd', 'set shortmess=a',
+    '--cmd', 'source ~/.config/nvim/init.lua',
+    '--cmd', 'MasonInstall gopls rust-analyzer gitui',
+    '--cmd', 'qall'
   )
 end
 
