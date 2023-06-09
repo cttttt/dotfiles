@@ -2,6 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
+  use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
   use 'elzr/vim-json'
