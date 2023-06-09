@@ -120,7 +120,7 @@ local on_attach = function(client, bufnr)
 
 end
 
-local lsp_servers = { 'gopls', 'rust_analyzer' }
+local lsp_servers = { 'gopls', 'rust_analyzer', 'solargraph' }
 local lsp_settings = {
   gopls = {
     on_attach = on_attach,
@@ -129,6 +129,9 @@ local lsp_settings = {
     }
   },
   rust_analyzer = {
+    on_attach = on_attach,
+  },
+  solargraph = {
     on_attach = on_attach,
   },
 }
