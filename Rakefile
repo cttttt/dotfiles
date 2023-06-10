@@ -70,6 +70,7 @@ task :install_rust do
     brew_install('rust')
   else
     apt_install('rust')
+    apt_install('rust-src')
   end
 end
 
