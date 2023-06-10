@@ -19,6 +19,7 @@ vim.opt.termguicolors = true
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 vim.opt.winblend = 1
+vim.opt.completeopt = 'menu,preview,menuone'
 
 -- do not expand tabs for file formats that require tabs
 function no_expand_tab(type)
