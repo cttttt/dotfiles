@@ -33,4 +33,7 @@ return require('packer').startup(function()
 
   -- required by ranger
   use 'rbgrouleff/bclose.vim'
+
+  use 'nvim-tree/nvim-web-devicons'
+  use 'folke/trouble.nvim'
 end)
