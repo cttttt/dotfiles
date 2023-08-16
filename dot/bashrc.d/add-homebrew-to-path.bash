@@ -1,1 +1,1 @@
-PATH=$PATH:/opt/homebrew/bin
+PATH=$PATH:/opt/homebrew/sbin:/opt/homebrew/bin
