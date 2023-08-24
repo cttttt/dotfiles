@@ -21,6 +21,9 @@ vim.opt.ttimeoutlen = 0
 vim.opt.winblend = 1
 vim.opt.completeopt = 'menu,preview,menuone'
 
+-- automatically open NERDTree
+vim.cmd("autocmd VimEnter * :NERDTree")
+
 -- do not expand tabs for file formats that require tabs
 function no_expand_tab(type)
   vim.cmd("autocmd FileType " .. type .. " set noexpandtab")
