@@ -10,3 +10,6 @@ vim.api.nvim_set_keymap('n', '<C-t>', ':FZF<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>F', ':Ranger<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':RangerCurrentFile<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>cd', ':RangerCD<CR>', {})
+
+-- nerdtree
+vim.api.nvim_set_keymap('n', '<Leader>n', ':NerdTreeFocus<CR>', {})

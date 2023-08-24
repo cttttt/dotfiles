@@ -60,6 +60,9 @@ vim.g.bufExplorerDefaultHelp = 1
 -- show buffers with no loaded file
 vim.g.bufExplorerShowNoName = 1
 
+-- show buffers with no loaded file
+vim.g.NERDTreeHijackNetrw = 0
+
 -- airline
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#overflow_marker'] = '…'
