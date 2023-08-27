@@ -12,4 +12,5 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':RangerCurrentFile<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>cd', ':RangerCD<CR>', {})
 
 -- nerdtree
-vim.api.nvim_set_keymap('n', '<Leader>n', ':NerdTreeFocus<CR>', {})
+vim.api.nvim_set_keymap('n', '<Leader>n', ':NERDTreeToggle<CR>', {})
+vim.api.nvim_set_keymap('n', '<Leader>N', ':NERDTreeFind<CR>', {})
