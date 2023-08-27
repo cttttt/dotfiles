@@ -23,6 +23,7 @@ vim.opt.completeopt = 'menu,preview,menuone'
 
 -- automatically open NERDTree
 vim.cmd("autocmd VimEnter * :NERDTree | :wincmd p")
+vim.cmd("autocmd bufenter * if (winnr(\"$\") == 1 && exists(\"b:NERDTree\") && b:NERDTree.isTabTree()) | q | endif")
 
 -- do not expand tabs for file formats that require tabs
 function no_expand_tab(type)
