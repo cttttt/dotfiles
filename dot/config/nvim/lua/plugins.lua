@@ -1,6 +1,8 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
+  use 'gfanto/fzf-lsp.nvim'
+  use 'nvim-lua/plenary.nvim'
   use 'wbthomason/packer.nvim'
   use 'jvirtanen/vim-hcl'
   use 'preservim/nerdtree'
