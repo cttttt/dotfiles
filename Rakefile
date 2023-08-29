@@ -169,7 +169,7 @@ task :install_vim_packer => [ :install_dotfiles ] do
     '--headless',
     '--cmd', 'set shortmess=a',
     '--cmd', 'source ~/.config/nvim/init.lua',
-    '--cmd', 'MasonInstall gopls rust-analyzer gitui solargraph python-lsp-server',
+    '--cmd', 'MasonInstall gopls rust-analyzer gitui solargraph python-lsp-serverp typescript-language-server',
     '--cmd', 'qall'
   )
 end
