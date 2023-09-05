@@ -125,7 +125,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<Leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-
 end
 
 local lsp_servers = { 'gopls', 'rust_analyzer', 'solargraph', 'pylsp', 'tsserver' }
@@ -185,3 +184,7 @@ require("mason").setup({
 require("mason-lspconfig").setup()
 end
 )
+
+-- further emulate vscode by using a similar command pallete binding
+-- nb: this only works out in normal mode
+vim.keymap.set('n', '<c-P>', '<cmd>Commands<CR>', opts)
