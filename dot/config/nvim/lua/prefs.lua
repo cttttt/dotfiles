@@ -21,6 +21,8 @@ vim.opt.ttimeoutlen = 0
 vim.opt.winblend = 1
 vim.opt.completeopt = 'menu,preview,menuone'
 
+vim.cmd("autocmd TermOpen * startinsert")
+
 -- automatically open NERDTree
 vim.cmd("autocmd VimEnter * :NERDTree | :wincmd p")
 vim.cmd("autocmd bufenter * if (winnr(\"$\") == 1 && exists(\"b:NERDTree\") && b:NERDTree.isTabTree()) | q | endif")
