@@ -16,6 +16,28 @@ find_project_dir () {
   ( find_project_dir_helper; )
 }
 
+_cd_completion () {
+  completing_word=${COMP_WORDS[$COMP_CWORD]}
+
+  while read completion; do 
+    if [[ $completion == $completing_word ]]; then
+      return 0
+    fi
+
+    if [[ ! -n $completing_word || $completion =~ ^$completing_word.* ]]; then
+      COMPREPLY+=("$completion")
+    fi
+  done < <(
+    compgen -G '*/'
+    ( cd ~/src/github.com && { 
+        compgen -G '*/*'
+      }
+    )
+  )
+}
+
+complete -o dirnames -o nospace -F _cd_completion cd
+
 cd () {
   local project_dir
 
