@@ -8,7 +8,7 @@ RUN apt-get update && apt install -y rake sudo tmux curl git neovim cargo python
 RUN curl -s -L https://dl.google.com/go/go1.20.5.linux-amd64.tar.gz | tar -xz -C /usr/local
 RUN useradd -m ctaylorr
 USER ctaylorr
-RUN cargo install fd-find
+RUN cargo install --locked fd-find
 USER root
 RUN echo 'ctaylorr ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN mkdir -p /home/ctaylorr/src/github.com/cttttt/dotfiles/
