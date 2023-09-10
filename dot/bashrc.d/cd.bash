@@ -26,7 +26,7 @@ _cd_completion () {
       return 0
     fi
 
-    if [[ ! -n $completing_word || $completion =~ ^$completing_word.* ]]; then
+    if [[ ! -n $completing_word || $completion == $completing_word* ]]; then
       COMPREPLY+=("$completion")
     fi
   done < <(
