@@ -1,5 +1,5 @@
 pcall(function ()
-  vim.cmd('colorscheme sonokai')
+  vim.cmd('colorscheme evening')
 end)
 
 -- keep buffers open when opening new files
