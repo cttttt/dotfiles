@@ -1,17 +1,42 @@
-clone () {
-  if [[ $# != 1 ]]; then
+clone_usage() {
     cat >&2 <<USAGE
-usage: clone [USER@[HOST:[ORG/[SLUG]]]]
+usage: clone [ -d DEPTH ] (USER@[HOST:[ORG/[SLUG]]])
 
 Clones the provided repo and changes to its working directory.
-USAGE
-  fi
 
-  local repo=$1
+Options:
+
+  -d DEPTH  How many commits deep should be cloned
+USAGE
+}
+
+clone () {
   local user=git
   local host=github.com
   local org=cttttt
   local slug=
+  declare -a depth
+
+  while getopts ':d:' curopt; do
+    case $curopt in
+      d)
+        depth_option=( --depth $OPTARG )
+        ;;
+      *)
+        clone_usage
+        return 1
+        ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
+  if [[ $# != 1 ]]; then
+    clone_usage
+    return 1
+  fi
+
+  local repo=$1
 
   while true; do
     if [[ "$repo" =~ ^.+?@.+?:.+?/.+$ ]]; then
@@ -59,7 +84,7 @@ DONE
       return 1
     fi
   else
-    if ! git clone "$repo" "$path"; then
+    if ! git clone "${depth_option[@]}" "$repo" "$path"; then
       echo "could not clone $1" >&2
       return 1
     fi
