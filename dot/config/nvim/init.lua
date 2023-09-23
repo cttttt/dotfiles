@@ -1,5 +1,3 @@
-lsp = require('lsp')
-
 -- Colors
 vim.cmd.colorscheme('evening')
 
