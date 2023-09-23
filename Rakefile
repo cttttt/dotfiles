@@ -18,8 +18,8 @@ task :all => [
   :install_bat,
   :install_ranger,
   :install_ag,
-  :install_vim_packer,
   :install_bash_completion,
+  :install_mason_things,
 ]
 
 task :test do
@@ -143,33 +143,15 @@ end
 
 # platform neutral tasks
 
-task :install_vim_packer => [ :install_dotfiles ] do
-  vim_packer_file = "#{Dir.home}/.local/share/nvim/site/pack/packer/start/packer.nvim"
-
-  next if File.exists?(vim_packer_file)
-
-  system(
-    'git',
-    'clone',
-    'https://github.com/wbthomason/packer.nvim',
-    vim_packer_file,
-  ) 
+task :install_mason_things => [ :install_dotfiles ] do
+  next if which('gopls')
 
   system(
     'nvim',
     '--headless',
     '--cmd', 'set shortmess=a',
     '--cmd', 'source ~/.config/nvim/init.lua',
-    '--cmd', 'autocmd User PackerComplete qa!',
-    '--cmd', 'PackerSync',
-  )
-
-  system(
-    'nvim',
-    '--headless',
-    '--cmd', 'set shortmess=a',
-    '--cmd', 'source ~/.config/nvim/init.lua',
-    '--cmd', 'MasonInstall gopls rust-analyzer gitui solargraph python-lsp-serverp typescript-language-server',
+    '--cmd', 'MasonInstall gopls rust-analyzer gitui solargraph python-lsp-server typescript-language-server',
     '--cmd', 'qall'
   )
 end
@@ -179,7 +161,7 @@ task :source_bashrc_d do
   source_bashrc_star = 'for file in ~/.bashrc.d/*.bash; do source "$file"; done'
   bashrc_path = File.join(Dir.home, '.bashrc')
 
-  contains_source_bashrc_star = if File.exists?(bashrc_path)
+  contains_source_bashrc_star = if File.exist?(bashrc_path)
                                   File.open(bashrc_path) do |bashrc|
                                     bashrc.each_line.to_a.map(&:chomp).include?(source_bashrc_star)
                                   end
