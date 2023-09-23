@@ -37,7 +37,7 @@ end, {})
 vim.keymap.set('v', '<C-c>', '"+y', {})
 
 vim.keymap.set('n', '<C-t>', function ()
-  vim.fn["fzf#run"]({sink = 'e'})
+  require('telescope.builtin').find_files()
 end, {})
 
 
@@ -71,8 +71,18 @@ require("lazy").setup({
   { 'williamboman/mason.nvim', config = true },
   { 'nvim-lualine/lualine.nvim', config = true },
   { 'lewis6991/gitsigns.nvim', config = true },
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.3',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    options = {
+      defaults = {
+        mappings = {
+        },
+      },
+    },
+  },
+  'nvim-lua/plenary.nvim',
   'wbthomason/packer.nvim',
-  'junegunn/fzf.vim',
   'ryanoasis/vim-devicons',
   'jvirtanen/vim-hcl',
   'williamboman/mason.nvim',
