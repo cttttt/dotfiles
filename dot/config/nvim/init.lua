@@ -78,7 +78,6 @@ pcall(function()
       solargraph = {},
       pylsp = {},
       tsserver = {},
-      lua_ls = {},
     }) do
     require('lspconfig')[server]
         .setup(settings)
