@@ -47,92 +47,90 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Plugins
-vim.cmd.packadd('packer.nvim')
 
--- table.unpack may not be available in older versions of lua
-table.unpack = table.unpack or unpack
+-- install lazy
 
-pcall(function()
-    require('mason').setup()
-    require('nvim-web-devicons').setup()
-    require('lualine').setup()
-    require('gitsigns').setup()
-    require('bufferline').setup({
-      options = {
-        numbers = 'buffer_id',
-        close_icon = '',
-        buffer_close_icon = '󰅖',
-      },
-    })
-    require('nvim-tree').setup({
-      git = {
-        enable = true
-      },
-    })
+local nvim_config_path = vim.fn.stdpath('data')
+local lazypath = nvim_config_path .. '/lazy/lazy.nvim'
 
-    for server, settings in pairs({
-      gopls = {
-        flags = {
-          debounce_text_changes = 150,
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- configure plugins
+
+require("lazy").setup({
+  { 'williamboman/mason.nvim', config = true },
+  { 'nvim-lualine/lualine.nvim', config = true },
+  { 'lewis6991/gitsigns.nvim', config = true },
+  'wbthomason/packer.nvim',
+  'junegunn/fzf.vim',
+  'ryanoasis/vim-devicons',
+  'jvirtanen/vim-hcl',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'elzr/vim-json',
+  'tpope/vim-rhubarb',
+  'tpope/vim-fugitive',
+  { 'neovim/nvim-lspconfig', 
+    config = function ()
+      for server, settings in pairs({
+        gopls = {
+          flags = {
+            debounce_text_changes = 150,
+          },
         },
-      },
-      rust_analyzer = {},
-      solargraph = {},
-      pylsp = {},
-      tsserver = {},
-    }) do
-      require('lspconfig')[server]
-          .setup(settings)
+        rust_analyzer = {},
+        solargraph = {},
+        pylsp = {},
+        tsserver = {},
+      }) do
+        require('lspconfig')[server]
+            .setup(settings)
+      end
     end
-end)
-
-require('packer').startup(function()
-  use('nvim-lualine/lualine.nvim')
-  use('lewis6991/gitsigns.nvim')
-  use('wbthomason/packer.nvim')
-  use('junegunn/fzf.vim')
-  use('ryanoasis/vim-devicons')
-  use('jvirtanen/vim-hcl')
-  use('williamboman/mason.nvim')
-  use('williamboman/mason-lspconfig.nvim')
-  use('elzr/vim-json')
-  use('tpope/vim-rhubarb')
-  use('tpope/vim-fugitive')
-  use('neovim/nvim-lspconfig')
-  use('vim-scripts/bufexplorer.zip')
-  use('akinsho/bufferline.nvim')
-
-  use({
+  },
+  'vim-scripts/bufexplorer.zip',
+  {
+    'akinsho/bufferline.nvim',
+     opts = {
+       options = {
+         numbers = 'buffer_id',
+         close_icon = '',
+         buffer_close_icon = '󰅖',
+       },
+     }
+  },
+  'windwp/nvim-autopairs',
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function ()
+      require('nvim-tree').setup()
+    end
+  },
+  { 'nvim-tree/nvim-web-devicons', config = true },
+  {
     'folke/trouble.nvim',
-    requires = {
+    dependancies = {
       'nvim-tree/nvim-web-devicons'
     }
-  })
-  use({
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
-      require('nvim-treesitter.install')
-        .update({ with_sync = true })()
-    end
-  })
-  use({
-    'windwp/nvim-autopairs',
-    config = function ()
-      require("nvim-autopairs").setup({})
-    end
-  })
-  use({
-    'nvim-tree/nvim-tree.lua',
-    config = function () 
-      require("nvim-tree").setup()
-    end
-  })
-  use({
-    'junegunn/fzf',
-    dir = '~/.fzf',
-    run = './install --all'
-  })
-end)
+     build = function()
+       require('nvim-treesitter.install')
+         .update({ with_sync = true })()
+     end
+  }
+})
 
 -- Quality of Life
 
@@ -166,6 +164,9 @@ vim.api.nvim_create_user_command('Gbrowse', function(opts)
 
   vim.cmd(cmd)
 end, { bang = true })
+
+-- -- table.unpack may not be available in older versions of lua
+table.unpack = table.unpack or unpack
 
 -- for some reason, rhubarb uses netrw's Browse to open
 -- things, like urls. vim-git requires me to disable netrw.
