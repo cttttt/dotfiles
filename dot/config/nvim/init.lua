@@ -44,9 +44,6 @@ end, {})
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-pcall(function()
-end)
-
 -- Plugins
 vim.cmd.packadd('packer.nvim')
 
