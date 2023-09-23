@@ -18,6 +18,7 @@ task :all => [
   :install_bat,
   :install_ranger,
   :install_ag,
+  :install_rg,
   :install_bash_completion,
   :install_mason_things,
 ]
@@ -140,6 +141,15 @@ task :install_ag do
   end
 end
 
+task :install_rg do
+  next if which('rg')
+
+  raise 'could not install rg' unless if osx?
+    brew_install('ripgrep')
+  else
+    apt_install('ripgrep')
+  end
+end
 
 # platform neutral tasks
 
