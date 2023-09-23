@@ -47,16 +47,22 @@ vim.g.loaded_netrwPlugin = 1
 -- Plugins
 vim.cmd.packadd('packer.nvim')
 
+-- table.unpack may not be available in older versions of lua
+table.unpack = table.unpack or unpack
+
 pcall(function()
+    require('mason').setup()
     require('nvim-web-devicons').setup()
     require('lualine').setup()
     require('gitsigns').setup()
-    require("bufferline").setup({
+    require('bufferline').setup({
       options = {
-        numbers = 'buffer_id'
-      }
+        numbers = 'buffer_id',
+        close_icon = '',
+        buffer_close_icon = '󰅖',
+      },
     })
-    require("nvim-tree").setup({
+    require('nvim-tree').setup({
       git = {
         enable = true
       },
@@ -64,25 +70,17 @@ pcall(function()
 
     for server, settings in pairs({
       gopls = {
-        on_attach = on_attach,
         flags = {
           debounce_text_changes = 150,
-        }
+        },
       },
-      rust_analyzer = {
-        on_attach = on_attach,
-      },
-      solargraph = {
-        on_attach = on_attach,
-      },
-      pylsp = {
-        on_attach = on_attach,
-      },
-      tsserver = {
-        on_attach = on_attach,
-      },
+      rust_analyzer = {},
+      solargraph = {},
+      pylsp = {},
+      tsserver = {},
+      lua_ls = {},
     }) do
-      require('lspconfig')[server]
+    require('lspconfig')[server]
         .setup(settings)
     end
 end)
@@ -168,10 +166,7 @@ vim.api.nvim_create_user_command('Gbrowse', function(opts)
   vim.cmd(cmd)
 end, { bang = true })
 
--- table.unpack may not be available in older versions of lua
-table.unpack = table.unpack or unpack
-
--- for some reason, rhubar uses netrw's Browse to open
+-- for some reason, rhubarb uses netrw's Browse to open
 -- things, like urls. vim-git requires me to disable netrw.
 vim.api.nvim_create_user_command('Browse', function(opts)
   vim.system({'open', table.unpack(opts.fargs)}, {}, nil)
