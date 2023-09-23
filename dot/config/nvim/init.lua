@@ -72,14 +72,26 @@ require("lazy").setup({
   { 'nvim-lualine/lualine.nvim', config = true },
   { 'lewis6991/gitsigns.nvim', config = true },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.3',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    options = {
-      defaults = {
-        mappings = {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.3',
+    config = function()
+      local telescope = require('telescope')
+      local actions = require('telescope.actions')
+
+      telescope.setup({
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-j>'] = 'move_selection_next',
+              ['<C-k>'] = 'move_selection_previous',
+              ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_worse,
+              ['<Tab>'] = actions.toggle_selection + actions.move_selection_better,
+            },
+          },
         },
-      },
-    },
+      })
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
   'nvim-lua/plenary.nvim',
   'wbthomason/packer.nvim',
