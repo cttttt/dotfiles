@@ -1,3 +1,5 @@
+lsp = require('lsp')
+
 -- Colors
 vim.cmd.colorscheme('evening')
 
@@ -40,6 +42,8 @@ vim.keymap.set('n', '<C-t>', function ()
   vim.fn["fzf#run"]({sink = 'e'})
 end, {})
 
+
+
 -- Plugin Setup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -79,8 +83,8 @@ pcall(function()
       pylsp = {},
       tsserver = {},
     }) do
-    require('lspconfig')[server]
-        .setup(settings)
+      require('lspconfig')[server]
+          .setup(settings)
     end
 end)
 
