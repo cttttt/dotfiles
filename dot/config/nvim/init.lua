@@ -195,3 +195,7 @@ table.unpack = table.unpack or unpack
 vim.api.nvim_create_user_command('Browse', function(opts)
   vim.system({'open', table.unpack(opts.fargs)}, {}, nil)
 end, { bang = true, nargs = 1 })
+
+vim.api.nvim_create_user_command('Ag', function (opts)
+  require('telescope.builtin').live_grep()
+end, { nargs = 0 })
