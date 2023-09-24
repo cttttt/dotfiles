@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if which batcat >&2; then
+  exec batcat "$@"
+fi
+
+exec /usr/bin/bat "$@"

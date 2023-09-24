@@ -127,7 +127,7 @@ task :install_bat do
   raise 'could not install bat' unless if osx?
     brew_install('bat')
   else
-    deb_install('https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb')
+    apt_install('bat')
   end
 end
 
