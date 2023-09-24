@@ -1,4 +1,4 @@
-CD_DEFAULT_GITHUB_ORG=${CD_DEFAULT_GITHUB_ORG:-cttttt}
+DEFAULT_GITHUB_ORG=${DEFAULT_GITHUB_ORG:-cttttt}
 
 find_project_dir_helper () {
   if [[ -d '.git' ]]; then
@@ -35,7 +35,7 @@ _cd_completion () {
         compgen -G '*/*'
       }
 
-      command cd "$HOME/src/github.com/${CD_DEFAULT_GITHUB_ORG}" && compgen -G '*'
+      command cd "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" && compgen -G '*'
     )
   )
 }
@@ -62,7 +62,7 @@ cd () {
 
   local dir=$1
 
-  local prefixes=( '.' "$HOME/src/github.com/${CD_DEFAULT_GITHUB_ORG}" "$HOME/src/github.com" "$HOME/src/$dir" )
+  local prefixes=( '.' "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" "$HOME/src/github.com" "$HOME/src/$dir" )
 
   for prefix in "${prefixes[@]}"; do
     local project_dir="$prefix/$dir"

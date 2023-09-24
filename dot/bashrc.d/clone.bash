@@ -13,7 +13,7 @@ USAGE
 clone () {
   local user=git
   local host=github.com
-  local org=cttttt
+  local org=${DEFAULT_GITHUB_ORG:-cttttt}
   local slug=
   declare -a depth
 
