@@ -41,6 +41,10 @@ vim.keymap.set('n', '<C-P>', function ()
   require('telescope.builtin').builtin()
 end, {})
 
+vim.keymap.set('n', '<leader>lg', function ()
+  vim.cmd('term lazygit')
+end, {})
+
 
 
 -- Plugin Setup
