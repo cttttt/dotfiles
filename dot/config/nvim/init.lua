@@ -72,7 +72,17 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { 'williamboman/mason.nvim', config = true },
-  { 'nvim-lualine/lualine.nvim', config = true },
+  { 
+    'nvim-lualine/lualine.nvim',
+    config = true,
+    opts = {
+      options = {
+        disabled_filetypes = {
+          'NvimTree',
+        }
+      }
+    },
+  },
   { 'lewis6991/gitsigns.nvim', config = true },
   {
     'nvim-telescope/telescope.nvim',
