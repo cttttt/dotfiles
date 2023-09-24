@@ -154,7 +154,12 @@ end
 # platform neutral tasks
 
 task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
-  next if which('gopls')
+  next if
+    which('gopls') &&
+    which('solargraph')
+
+  # solargraph requires a new version of ruby
+  apt_install('ruby')
 
   system(
     'nvim',
