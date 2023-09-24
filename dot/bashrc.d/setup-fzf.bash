@@ -12,6 +12,8 @@ export FZF_CTRL_T_OPTS="--preview='test -d {} || bat --style=numbers --color=alw
 fzf_shell_setup_scripts=(
   ~/.config/nvim/plugged/fzf/shell/{key-bindings.bash,completion.bash}
   ~/.local/share/nvim/site/pack/packer/start/fzf/shell/{key-bindings.bash,completion.bash}
+  /etc/bash_completion
+  /usr/share/doc/fzf/examples/key-bindings.bash
 )
 
 for fzf_shell_setup_script in "${fzf_shell_setup_scripts[@]}"; do
