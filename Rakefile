@@ -97,7 +97,7 @@ task :install_fd => [ :install_dotfiles ] do
 end
 
 task :install_nvim do
-  next if which('nvim') && nvim_version_at_least?(0,5,0)
+  next if which('nvim') && nvim_version_at_least?(0,9,0)
 
   if RUBY_PLATFORM =~ /darwin/
     brew_install('neovim', head: true) or raise "could not install neovim"
@@ -153,7 +153,7 @@ end
 
 # platform neutral tasks
 
-task :install_mason_things => [ :install_dotfiles ] do
+task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
   next if which('gopls')
 
   system(
