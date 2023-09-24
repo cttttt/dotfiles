@@ -171,7 +171,12 @@ require("lazy").setup({
       vim.keymap.set({ "v", "n" }, "<Leader>ca", require("actions-preview").code_actions)
     end
   },
-  'sainnhe/everforest',
+  {
+    'sainnhe/everforest',
+    config = function ()
+      vim.cmd.colorscheme('everforest')
+    end
+  }
 })
 
 -- Quality of Life
@@ -219,9 +224,3 @@ end, { bang = true, nargs = 1 })
 vim.api.nvim_create_user_command('Ag', function (opts)
   require('telescope.builtin').live_grep()
 end, { nargs = 0 })
-
--- Colors
-pcall(function ()
-vim.cmd.colorscheme('everforest')
-end)
-
