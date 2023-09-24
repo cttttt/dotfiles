@@ -45,6 +45,10 @@ vim.keymap.set('n', '<leader>lg', function ()
   vim.cmd('term lazygit')
 end, {})
 
+vim.keymap.set("n", "<Leader>cr", function ()
+  vim.lsp.buf.rename()
+end, {})
+
 -- Plugin Setup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
