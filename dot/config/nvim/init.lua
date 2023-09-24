@@ -37,6 +37,10 @@ vim.keymap.set('n', '<C-t>', function ()
   require('telescope.builtin').find_files()
 end, {})
 
+vim.keymap.set('n', '<C-P>', function ()
+  require('telescope.builtin').builtin()
+end, {})
+
 
 
 -- Plugin Setup
