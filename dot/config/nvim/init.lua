@@ -45,8 +45,6 @@ vim.keymap.set('n', '<leader>lg', function ()
   vim.cmd('term lazygit')
 end, {})
 
-
-
 -- Plugin Setup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -155,9 +153,10 @@ require("lazy").setup({
   'windwp/nvim-autopairs',
   {
     'nvim-tree/nvim-tree.lua',
-    config = function ()
-      require('nvim-tree').setup()
-    end
+    config = true,
+    opts = {
+      sync_root_with_cwd = true,
+    },
   },
   { 'nvim-tree/nvim-web-devicons', config = true },
   {
@@ -185,6 +184,13 @@ require("lazy").setup({
       vim.cmd.colorscheme('everforest')
       vim.opt.background = 'dark'
     end
+  },
+  {
+    'notjedi/nvim-rooter.lua',
+    config = true,
+    opts = {
+      manual = true,
+    }
   }
 })
 
@@ -233,3 +239,10 @@ end, { bang = true, nargs = 1 })
 vim.api.nvim_create_user_command('Ag', function (opts)
   require('telescope.builtin').live_grep()
 end, { nargs = 0 })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  callback = function()
+    vim.cmd.lcd(vim.fn.expand('%:p:h'))
+  end
+})
