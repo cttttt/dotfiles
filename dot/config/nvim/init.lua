@@ -1,6 +1,3 @@
--- Colors
-vim.cmd.colorscheme('evening')
-
 -- Prefs
 vim.opt.cursorline = true
 vim.opt.hidden = true
@@ -167,7 +164,14 @@ require("lazy").setup({
        require('nvim-treesitter.install')
          .update({ with_sync = true })()
      end
-  }
+  },
+  {
+    'aznhe21/actions-preview.nvim',
+    config = function()
+      vim.keymap.set({ "v", "n" }, "<Leader>ca", require("actions-preview").code_actions)
+    end
+  },
+  'sainnhe/everforest',
 })
 
 -- Quality of Life
@@ -215,4 +219,9 @@ end, { bang = true, nargs = 1 })
 vim.api.nvim_create_user_command('Ag', function (opts)
   require('telescope.builtin').live_grep()
 end, { nargs = 0 })
+
+-- Colors
+pcall(function ()
+vim.cmd.colorscheme('everforest')
+end)
 
