@@ -257,10 +257,3 @@ end, { bang = true, nargs = 1 })
 vim.api.nvim_create_user_command('Ag', function (opts)
   require('telescope.builtin').live_grep()
 end, { nargs = 0 })
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = '*',
-  callback = function()
-    vim.cmd.lcd(vim.fn.expand('%:p:h'))
-  end
-})
