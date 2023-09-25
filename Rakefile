@@ -8,6 +8,7 @@ task default: :all
   
 task :all => [
   :install_dotfiles,
+  :install_homebrew_git,
   :source_bashrc_d,
   :install_golang,
   :install_rust,
@@ -25,6 +26,13 @@ task :all => [
 
 task :test do
   system(*%w{docker build -t dotfiles .}) and system(*%w{docker run --rm -ti dotfiles})
+end
+
+task :install_homebrew_git do
+  next unless osx?
+  next if File.exist?('/opt/homebrew/etc/bash_completion.d/git-completion.bash')
+
+  brew_install('git')
 end
 
 # platform specific tasks
