@@ -133,7 +133,12 @@ require("lazy").setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'elzr/vim-json',
-  'tpope/vim-rhubarb',
+  {
+    'tpope/vim-rhubarb',
+    config = function ()
+      vim.cmd.ab({'Gbrowse', 'GBrowse'})
+    end
+  },
   'tpope/vim-fugitive',
   { 'neovim/nvim-lspconfig', 
     config = function ()
@@ -236,18 +241,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt.softtabstop = 8
   end
 })
-
--- for some reason, the maintainer of rhubarb has
--- an aversion to the original capitalization of Gbrowse
-vim.api.nvim_create_user_command('Gbrowse', function(opts)
-  local cmd = 'GBrowse'
-
-  if opts.bang then
-    cmd = cmd .. '!'
-  end
-
-  vim.cmd(cmd)
-end, { bang = true })
 
 -- -- table.unpack may not be available in older versions of lua
 table.unpack = table.unpack or unpack
