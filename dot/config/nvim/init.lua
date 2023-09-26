@@ -29,6 +29,7 @@ end, {})
 
 vim.keymap.set('n', '<leader>N', function ()
   require("nvim-tree.api").tree.find_file( { open = true } )
+  require("nvim-tree.api").tree.focus()
 end, {})
 
 vim.keymap.set('v', '<C-c>', '"+y', {})
