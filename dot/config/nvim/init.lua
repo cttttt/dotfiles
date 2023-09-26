@@ -175,6 +175,10 @@ require("lazy").setup({
     config = true,
     opts = {
       sync_root_with_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = true
+      },
     },
   },
   { 'nvim-tree/nvim-web-devicons', config = true },
