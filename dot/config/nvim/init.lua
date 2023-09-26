@@ -181,11 +181,14 @@ require("lazy").setup({
         update_root = true
       },
     },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    }
   },
   { 'nvim-tree/nvim-web-devicons', config = true },
   {
     'folke/trouble.nvim',
-    dependancies = {
+    dependencies = {
       'nvim-tree/nvim-web-devicons'
     }
   },
