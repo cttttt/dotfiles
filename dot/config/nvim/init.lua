@@ -259,5 +259,7 @@ vim.api.nvim_create_user_command('Browse', function(opts)
 end, { bang = true, nargs = 1 })
 
 vim.api.nvim_create_user_command('Ag', function (opts)
-  require('telescope.builtin').live_grep()
-end, { nargs = 0 })
+  require('telescope.builtin').live_grep({
+    default_text = opts.args,
+  })
+end, { nargs = '?' })
