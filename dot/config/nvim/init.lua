@@ -49,6 +49,10 @@ vim.keymap.set("n", "<Leader>cr", function ()
   vim.lsp.buf.rename()
 end, {})
 
+vim.keymap.set("n", "<Leader>t", function ()
+  vim.cmd('Terminal')
+end, {})
+
 -- Plugin Setup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -214,9 +218,6 @@ require("lazy").setup({
   {
     'notjedi/nvim-rooter.lua',
     config = true,
-    opts = {
-      manual = true,
-    }
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -262,4 +263,25 @@ vim.api.nvim_create_user_command('Ag', function (opts)
   require('telescope.builtin').live_grep({
     default_text = opts.args,
   })
+end, { nargs = '?' })
+
+-- opens a terminal below the current buffer.  instead of using autochdir, just
+-- make a command that does this directory.
+vim.api.nvim_create_user_command('Terminal', function (opts)
+  -- Until I discover ways to do this more directly using the API...
+  local dir = vim.fn.expand("%:h:p")
+
+  vim.cmd('split')
+
+  if dir ~= '' then
+    vim.cmd({
+      cmd = 'lcd',
+      args = {
+        dir,
+      }
+    })
+  end
+
+  vim.cmd(vim.api.nvim_replace_termcodes('norm! <C-W>J', true, false, true))
+  vim.cmd('terminal')
 end, { nargs = '?' })
