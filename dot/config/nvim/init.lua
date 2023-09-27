@@ -255,7 +255,7 @@ table.unpack = table.unpack or unpack
 -- for some reason, rhubarb uses netrw's Browse to open
 -- things, like urls. vim-tree requires me to disable netrw.
 vim.api.nvim_create_user_command('Browse', function(opts)
-  vim.system({'open', table.unpack(opts.fargs)}, {}, nil)
+  vim.ui.open(table.unpack(opts.fargs))
 end, { bang = true, nargs = 1 })
 
 vim.api.nvim_create_user_command('Ag', function (opts)
