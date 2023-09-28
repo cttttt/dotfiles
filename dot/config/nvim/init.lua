@@ -286,11 +286,11 @@ end, { nargs = '?' })
 -- make a command that does this directory.
 vim.api.nvim_create_user_command('Terminal', function (opts)
   -- Until I discover ways to do this more directly using the API...
-  local dir = vim.fn.expand("%:h:p")
+  local dir = vim.fn.expand("%:p:h")
 
   vim.cmd('split')
 
-  if dir ~= '' then
+  if dir.find(dir, '^/') then
     vim.cmd({
       cmd = 'lcd',
       args = {
