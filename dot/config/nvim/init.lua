@@ -137,7 +137,6 @@ require("lazy").setup({
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
   'nvim-lua/plenary.nvim',
-  'wbthomason/packer.nvim',
   'ryanoasis/vim-devicons',
   'jvirtanen/vim-hcl',
   'williamboman/mason.nvim',
