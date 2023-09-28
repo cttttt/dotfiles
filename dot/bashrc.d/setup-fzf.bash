@@ -14,6 +14,7 @@ fzf_shell_setup_scripts=(
   ~/.local/share/nvim/site/pack/packer/start/fzf/shell/{key-bindings.bash,completion.bash}
   /etc/bash_completion
   /usr/share/doc/fzf/examples/key-bindings.bash
+  /opt/homebrew/Cellar/fzf/*/shell/*.bash
 )
 
 for fzf_shell_setup_script in "${fzf_shell_setup_scripts[@]}"; do
