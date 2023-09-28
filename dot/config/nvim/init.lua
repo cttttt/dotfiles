@@ -256,10 +256,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'make,go',
   callback = function ()
-    vim.opt.expandtab = false
-    vim.opt.tabstop = 8
-    vim.opt.shiftwidth = 8
-    vim.opt.softtabstop = 8
+    vim.bo.expandtab = false
+    vim.bo.tabstop = 8
+    vim.bo.shiftwidth = 8
+    vim.bo.softtabstop = 8
   end
 })
 
