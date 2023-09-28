@@ -99,7 +99,13 @@ require("lazy").setup({
       }
     },
   },
-  { 'lewis6991/gitsigns.nvim', config = true },
+  {
+    'lewis6991/gitsigns.nvim',
+    config = true,
+    opts = {
+      numhl = true,
+    }
+  },
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.3',
