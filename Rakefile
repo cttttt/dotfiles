@@ -22,10 +22,18 @@ task :all => [
   :install_rg,
   :install_bash_completion,
   :install_mason_things,
+  :install_tmux_termcap,
 ]
 
 task :test do
   system(*%w{docker build -t dotfiles .}) and system(*%w{docker run --rm -ti dotfiles})
+end
+
+task :install_tmux_termcap do
+  next unless osx?
+  next if system(*%w{infocmp -x tmux-256color}, :out => '/dev/null', :err => :out)
+
+  system(*%w{/usr/bin/tic -x}, 'cfg/tmux-256color.termcap')
 end
 
 task :install_homebrew_git do
