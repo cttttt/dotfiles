@@ -281,10 +281,10 @@ vim.api.nvim_create_user_command('Ag', function (opts)
   })
 end, { nargs = '?' })
 
--- opens a terminal below the current buffer.  instead of using autochdir, just
--- make a command that does this directory.
+-- opens a terminal below the current buffer in the current buffer's file's
+-- directory.
+-- instead of using autochdir, just add code that derives this directory.
 vim.api.nvim_create_user_command('Terminal', function (opts)
-  -- Until I discover ways to do this more directly using the API...
   local dir = vim.fn.expand("%:p:h")
 
   vim.cmd('split')
@@ -298,6 +298,7 @@ vim.api.nvim_create_user_command('Terminal', function (opts)
     })
   end
 
+  -- until I discover ways to do this more directly using the API...
   vim.cmd(vim.api.nvim_replace_termcodes('norm! <C-W>J', true, false, true))
   vim.cmd('terminal')
 end, { nargs = '?' })
