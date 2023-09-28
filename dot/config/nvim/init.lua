@@ -34,7 +34,9 @@ end, {})
 vim.keymap.set('v', '<C-c>', '"+y', {})
 
 vim.keymap.set('n', '<C-t>', function ()
-  require('telescope.builtin').find_files()
+  require('telescope.builtin').find_files({
+    hidden = true,
+  })
 end, {})
 
 vim.keymap.set('n', '<C-P>', function ()
@@ -181,8 +183,19 @@ require("lazy").setup({
       sync_root_with_cwd = true,
       update_focused_file = {
         enable = true,
-        update_root = true
+        update_root = true,
       },
+      renderer = {
+        highlight_git = true,
+        highlight_diagnostics = true,
+        highlight_opened_files = "all",
+      },
+      filters = {
+        git_ignored = false,
+      },
+      diagnostics = {
+        enable = true,
+      }
     },
     dependencies = {
       'nvim-tree/nvim-web-devicons'
