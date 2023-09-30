@@ -175,7 +175,7 @@ require("lazy").setup({
       end
     end
   },
-  'vim-scripts/bufexplorer.zip',
+  'jlanzarotta/bufexplorer',
   {
     'akinsho/bufferline.nvim',
      opts = {
