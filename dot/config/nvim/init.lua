@@ -59,6 +59,10 @@ vim.keymap.set("n", "<Leader>t", function ()
   vim.cmd('Terminal')
 end, {})
 
+vim.keymap.set("n", "<Leader>be", function ()
+  require('telescope.builtin').buffers()
+end, {})
+
 -- Plugin Setup
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -140,6 +144,20 @@ require("lazy").setup({
             },
           },
         },
+        pickers = {
+          buffers = {
+            show_all_buffers = true,
+            sort_mru = true,
+            mappings = {
+              n = {
+                ["d"] = "delete_buffer",
+              },
+              i = {
+                ["<C-d>"] = "delete_buffer",
+              },
+            }
+          },
+        },
       })
     end,
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -175,7 +193,6 @@ require("lazy").setup({
       end
     end
   },
-  'jlanzarotta/bufexplorer',
   {
     'akinsho/bufferline.nvim',
      opts = {
