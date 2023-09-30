@@ -267,6 +267,11 @@ require("lazy").setup({
       require('telescope')
         .load_extension('fzf')
     end,
+  },
+  {
+    'yutkat/confirm-quit.nvim',
+    event = 'CmdlineEnter',
+    config = true
   }
 })
 
