@@ -179,8 +179,8 @@ require("lazy").setup({
     config = function ()
       for server, settings in pairs({
         gopls = {
-          flags = {
-            debounce_text_changes = 150,
+          settings = {
+            gopls = {},
           },
         },
         rust_analyzer = {},
@@ -272,7 +272,7 @@ require("lazy").setup({
     'yutkat/confirm-quit.nvim',
     event = 'CmdlineEnter',
     config = true
-  }
+  },
 })
 
 -- Quality of Life
