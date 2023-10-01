@@ -48,7 +48,7 @@ vim.keymap.set('n', '<C-P>', function ()
 end, {})
 
 vim.keymap.set('n', '<leader>lg', function ()
-  vim.cmd('term lazygit')
+  vim.cmd.Terminal({args = {"lazygit"}})
 end, {})
 
 vim.keymap.set("n", "<Leader>cr", function ()
@@ -334,5 +334,8 @@ vim.api.nvim_create_user_command('Terminal', function (opts)
     vim.cmd({ cmd = 'lcd', args = { cur_file_dir } })
   end
 
-  vim.cmd('terminal')
-end, { nargs = '?' })
+  vim.cmd({
+    cmd = 'terminal',
+    args = opts.fargs,
+  })
+end, { nargs = '*' })
