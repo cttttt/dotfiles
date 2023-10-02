@@ -180,7 +180,6 @@ require("lazy").setup({
       for server, settings in pairs({
         gopls = {
           settings = {
-            gopls = {},
           },
         },
         rust_analyzer = {},
