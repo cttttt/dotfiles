@@ -1,0 +1,2 @@
+[{Makefile,*.go}]
+indent_style = tab

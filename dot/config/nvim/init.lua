@@ -285,17 +285,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end
 })
 
--- some filetypes require actual tabs
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'make,go',
-  callback = function ()
-    vim.bo.expandtab = false
-    vim.bo.tabstop = 8
-    vim.bo.shiftwidth = 8
-    vim.bo.softtabstop = 8
-  end
-})
-
 -- -- table.unpack may not be available in older versions of lua
 table.unpack = table.unpack or unpack
 
