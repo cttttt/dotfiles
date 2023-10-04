@@ -43,7 +43,7 @@ vim.keymap.set('n', '<C-t>', function ()
   })
 end, {})
 
-vim.keymap.set('n', '<C-P>', function ()
+vim.keymap.set('n', '<C-p>', function ()
   require('telescope.builtin').builtin()
 end, {})
 
