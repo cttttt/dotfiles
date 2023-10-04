@@ -24,15 +24,11 @@ vim.keymap.set('n', '<leader>bb', function ()
 end, {})
 
 vim.keymap.set('n', '<leader>n', function ()
-  require("nvim-tree.api").tree.toggle()
+  vim.cmd.Neotree('toggle')
 end, {})
 
 vim.keymap.set('n', '<leader>N', function ()
-  require("nvim-tree.api").tree.find_file({
-    open = true,
-    focus = true,
-    update_root = true,
-  })
+  vim.cmd.Neotree('reveal')
 end, {})
 
 vim.keymap.set('v', '<C-c>', '"+y', {})
@@ -204,28 +200,12 @@ require("lazy").setup({
   },
   'windwp/nvim-autopairs',
   {
-    'nvim-tree/nvim-tree.lua',
+    'nvim-neo-tree/neo-tree.nvim',
     config = true,
-    opts = {
-      sync_root_with_cwd = true,
-      update_focused_file = {
-        enable = true,
-        update_root = true,
-      },
-      renderer = {
-        highlight_git = true,
-        highlight_diagnostics = true,
-        highlight_opened_files = "all",
-      },
-      filters = {
-        git_ignored = false,
-      },
-      diagnostics = {
-        enable = true,
-      }
-    },
     dependencies = {
-      'nvim-tree/nvim-web-devicons'
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
     }
   },
   { 'nvim-tree/nvim-web-devicons', config = true },
@@ -306,7 +286,7 @@ end, { nargs = '?' })
 -- this is an alternative to using autochdir that doesn't cause plugins to
 -- break
 vim.api.nvim_create_user_command('Terminal', function (opts)
-  if vim.bo.filetype == 'NvimTree' then
+  if vim.bo.filetype == 'neo-tree' then
     return
   end
 
