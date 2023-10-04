@@ -202,6 +202,11 @@ require("lazy").setup({
   {
     'nvim-neo-tree/neo-tree.nvim',
     config = true,
+    opts = {
+      filesystem = {
+        use_libuv_file_watcher = true,
+      },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
