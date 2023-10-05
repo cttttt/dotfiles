@@ -173,6 +173,7 @@ task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
   next if
     which('gopls') &&
     which('solargraph') &&
+    which('terraform-ls') &&
     which('gopls') &&
     which('rust-analyzer') &&
     which('gitui') &&
@@ -186,7 +187,7 @@ task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
     '--headless',
     '--cmd', 'set shortmess=a',
     '--cmd', 'source ~/.config/nvim/init.lua',
-    '--cmd', 'MasonInstall gopls rust-analyzer gitui solargraph python-lsp-server typescript-language-server',
+    '--cmd', 'MasonInstall terraform-ls gopls rust-analyzer gitui solargraph python-lsp-server typescript-language-server',
     '--cmd', 'qall'
   )
 end
