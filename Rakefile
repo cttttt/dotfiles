@@ -172,9 +172,13 @@ end
 task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
   next if
     which('gopls') &&
-    which('solargraph')
+    which('solargraph') &&
+    which('gopls') &&
+    which('rust-analyzer') &&
+    which('gitui') &&
+    which('solargraph') &&
+    which('typescript-language-server')
 
-  # solargraph requires a new version of ruby
   apt_install('ruby')
 
   system(
