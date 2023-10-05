@@ -23,6 +23,7 @@ task :all => [
   :install_bash_completion,
   :install_mason_things,
   :install_tmux_termcap,
+  :install_terraform,
 ]
 
 task :test do
@@ -167,6 +168,15 @@ task :install_rg do
   end
 end
 
+task :install_terraform do
+  next if which('terraform')
+
+  raise 'could not install terraform' unless if osx?
+    brew_install('terraform')
+  else
+    apt_install('terraform')
+  end
+end
 # platform neutral tasks
 
 task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
