@@ -1,5 +1,5 @@
 return {
-  'neovim/nvim-lspconfig', 
+  'neovim/nvim-lspconfig',
   config = function ()
     for server, settings in pairs({
       gopls = {
@@ -11,9 +11,13 @@ return {
       pylsp = {},
       tsserver = {},
       terraformls = {},
+      lua_ls = {},
     }) do
       require('lspconfig')[server]
       .setup(settings)
     end
-  end
+  end,
+  dependencies = {
+    "folke/neodev.nvim",
+  },
 }

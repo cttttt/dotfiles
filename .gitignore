@@ -1,2 +1,3 @@
 **/*.swp
 dot/ssh/config.d/jump_hosts.config
+dot/config/nvim/lua/.luarc.json
