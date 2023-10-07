@@ -1,0 +1,17 @@
+vim.keymap.set('n', '<leader>bb', function ()
+  vim.cmd('b#')
+end, {})
+
+vim.keymap.set('v', '<C-c>', '"+y', {})
+
+vim.keymap.set('n', '<leader>lg', function ()
+  vim.cmd.Terminal({args = {"lazygit"}})
+end, {})
+
+vim.keymap.set("n", "<Leader>t", function ()
+  vim.cmd('Terminal')
+end, {})
+
+vim.keymap.set("n", "<Leader>cr", function ()
+  vim.lsp.buf.rename()
+end, {})
