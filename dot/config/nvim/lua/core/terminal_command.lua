@@ -17,7 +17,7 @@ vim.api.nvim_create_user_command('Terminal', function (opts)
 
   -- special buffers will not have a filesystem path. in these cases, we should
   -- not try to change to the dirname of the current file.
-  if not(cur_file_dir == nil or cur_file_dir:find('^/')) then
+  if not(cur_file_dir == nil) and cur_file_dir:find('^/') then
     vim.cmd({ cmd = 'lcd', args = { cur_file_dir } })
   end
 
