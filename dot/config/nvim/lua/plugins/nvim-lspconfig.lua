@@ -12,6 +12,7 @@ return {
       tsserver = {},
       terraformls = {},
       lua_ls = {},
+      actionlint = {},
     }) do
       require('lspconfig')[server]
       .setup(settings)

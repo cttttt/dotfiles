@@ -197,7 +197,7 @@ task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
     '--headless',
     '--cmd', 'set shortmess=a',
     '--cmd', 'source ~/.config/nvim/init.lua',
-    '--cmd', 'MasonInstall terraform-ls gopls rust-analyzer gitui solargraph python-lsp-server typescript-language-server',
+    '--cmd', 'MasonInstall terraform-ls gopls rust-analyzer gitui solargraph python-lsp-server typescript-language-server actionlint',
     '--cmd', 'qall'
   )
 end
