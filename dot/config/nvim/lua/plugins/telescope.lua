@@ -24,6 +24,8 @@ return {
       defaults = {
         mappings = {
           i = {
+            ['<C-a>'] = actions.select_all,
+            ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
             ['<C-j>'] = 'move_selection_next',
             ['<C-k>'] = 'move_selection_previous',
             ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_worse,
