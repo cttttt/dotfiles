@@ -15,3 +15,7 @@ end, {})
 vim.keymap.set("n", "<Leader>cr", function ()
   vim.lsp.buf.rename()
 end, {})
+
+vim.keymap.set('n', '<leader>h', function ()
+  vim.lsp.buf.hover()
+end, {})
