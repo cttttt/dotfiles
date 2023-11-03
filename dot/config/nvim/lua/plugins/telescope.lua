@@ -22,6 +22,7 @@ return {
 
     telescope.setup({
       defaults = {
+        layout_strategy = "vertical",
         mappings = {
           i = {
             ['<C-a>'] = actions.select_all,
