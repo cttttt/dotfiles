@@ -36,11 +36,12 @@ _cd_completion () {
     fi
 
     if [[ ! -n $completing_word || $completion == $completing_word* ]]; then
-      COMPREPLY+=("$completion")
+      COMPREPLY+=($completion)
     fi
   done < <(
     if ! $bash_completion_exists; then
       compgen -G '*/'
+      compgen -G '.*/'
     fi
     ( command cd "$HOME/src/github.com" && compgen -G '*/*/'; )
     ( command cd "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" && compgen -G '*/'; )
