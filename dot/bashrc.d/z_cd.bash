@@ -40,7 +40,6 @@ _cd_completion () {
     fi
   done < <(
     if ! $bash_completion_exists; then
-      compgen -G '*/'
       compgen -G '.*/'
     fi
     ( command cd "$HOME/src/github.com" && compgen -G '*/*/'; )
