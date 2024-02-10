@@ -1,1 +1,1 @@
-eval "$(~/.local/bin/mise activate bash)"
+eval "$(mise activate bash)"
