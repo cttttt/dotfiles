@@ -19,7 +19,16 @@ find_project_dir () {
 }
 
 _cd_completion () {
-  completing_word=${COMP_WORDS[$COMP_CWORD]}
+  local bash_completion_exists
+
+  if [[ $(type -t _cd) == function ]]; then
+    bash_completion_exists=true
+    _cd
+  else
+    bash_completion_exists=false
+  fi
+
+  local completing_word=${COMP_WORDS[$COMP_CWORD]}
 
   while read completion; do 
     if [[ $completion == $completing_word ]]; then
@@ -30,13 +39,12 @@ _cd_completion () {
       COMPREPLY+=("$completion")
     fi
   done < <(
-    compgen -G '*/'
-    ( command cd "$HOME/src/github.com" && { 
-        compgen -G '*/*'
-      }
-
-      command cd "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" && compgen -G '*'
-    )
+    if ! $bash_completion_exists; then
+      compgen -G '*/'
+    fi
+    ( command cd "$HOME/src/github.com" && compgen -G '*/*/'; )
+    ( command cd "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" && compgen -G '*/'; )
+    ( command cd "$HOME/src" && compgen -G '*/'; )
   )
 }
 
@@ -62,7 +70,7 @@ cd () {
 
   local dir=$1
 
-  local prefixes=( '.' "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" "$HOME/src/github.com" "$HOME/src/$dir" )
+  local prefixes=( '.' "$HOME/src/github.com/${DEFAULT_GITHUB_ORG}" "$HOME/src/github.com" "$HOME/src" )
 
   for prefix in "${prefixes[@]}"; do
     local project_dir="$prefix/$dir"
