@@ -1,2 +1,5 @@
 [tools]
 ruby = '3'
+go = '1.22'
+rust = '1.76.0'
+terraform = '1.7.3'

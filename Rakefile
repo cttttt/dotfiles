@@ -10,8 +10,7 @@ task :all => [
   :install_dotfiles,
   :install_homebrew_git,
   :source_bashrc_d,
-  :install_golang,
-  :install_rust,
+  :install_mise,
   :install_lazygit,
   :install_nvim,
   :install_tmux,
@@ -22,8 +21,7 @@ task :all => [
   :install_rg,
   :install_bash_completion,
   :install_mason_things,
-  :install_tmux_termcap,
-  :install_terraform,
+  :install_tmux_termcap
 ]
 
 task :test do
@@ -42,6 +40,11 @@ task :install_homebrew_git do
   next if File.exist?('/opt/homebrew/etc/bash_completion.d/git-completion.bash')
 
   brew_install('git')
+end
+
+task :install_mise do
+  next if which('mise')
+  system('bash', '-c', 'curl https://mise.run | sh')
 end
 
 # platform specific tasks
@@ -68,27 +71,6 @@ task :install_bash_completion do
     brew_install('bash-completion')
   else
     apt_install('bash-completion')
-  end
-end
-
-task :install_golang do
-  next if which('go')
-
-  raise 'could not install go lang toolchain' unless if osx?
-    brew_install('golang')
-  else
-    apt_install('golang')
-  end
-end
-
-task :install_rust do
-  next if which('rustc')
-
-  raise 'could not install rust toolchain' unless if osx?
-    brew_install('rust')
-  else
-    apt_install('rust')
-    apt_install('rust-src')
   end
 end
 
@@ -168,15 +150,6 @@ task :install_rg do
   end
 end
 
-task :install_terraform do
-  next if which('terraform')
-
-  raise 'could not install terraform' unless if osx?
-    brew_install('terraform')
-  else
-    apt_install('terraform')
-  end
-end
 # platform neutral tasks
 
 task :install_mason_things => [ :install_dotfiles, :install_nvim ] do
