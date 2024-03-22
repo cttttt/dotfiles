@@ -8,7 +8,7 @@ return {
       },
       rust_analyzer = {},
       solargraph = {},
-      pylsp = {},
+      basedpyright = {},
       tsserver = {},
       terraformls = {},
       lua_ls = {},
