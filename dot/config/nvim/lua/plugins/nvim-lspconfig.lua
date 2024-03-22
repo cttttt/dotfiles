@@ -16,6 +16,10 @@ return {
       require('lspconfig')[server]
       .setup(settings)
     end
+
+    vim.diagnostic.config({
+      severity_sort = true,
+    })
   end,
   dependencies = {
     "folke/neodev.nvim",
