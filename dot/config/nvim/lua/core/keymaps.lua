@@ -8,6 +8,10 @@ vim.keymap.set('n', '<leader>lg', function ()
   vim.cmd.Terminal({args = {"lazygit"}})
 end, {})
 
+vim.keymap.set("n", "<Leader>cd", function ()
+  require('diagflow').toggle()
+end, {})
+
 vim.keymap.set("n", "<Leader>t", function ()
   vim.cmd('Terminal')
 end, {})
