@@ -12,6 +12,16 @@ return {
       tsserver = {},
       terraformls = {},
       lua_ls = {},
+      yamlls = {},
+      helm_ls = {
+        settings = {
+          ['helm-ls'] = {
+            yamlls = {
+              path = "yaml-language-server",
+            }
+          }
+        },
+      },
     }) do
       require('lspconfig')[server]
       .setup(settings)
@@ -23,5 +33,6 @@ return {
   end,
   dependencies = {
     "folke/neodev.nvim",
+    "towolf/vim-helm",
   },
 }
