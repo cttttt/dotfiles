@@ -11,4 +11,5 @@ return {
       desc = "Diagnostics (Trouble)",
     },
   },
+  lazy = false,
 }
