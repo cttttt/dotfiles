@@ -29,6 +29,7 @@ return {
 
     vim.diagnostic.config({
       severity_sort = true,
+      update_in_insert = true,
     })
   end,
   dependencies = {
