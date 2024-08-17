@@ -9,7 +9,7 @@ vim.keymap.set('n', '<leader>lg', function ()
 end, {})
 
 vim.keymap.set("n", "<Leader>cd", function ()
-  require('diagflow').toggle()
+  require("lsp_lines").toggle()
 end, {})
 
 vim.keymap.set("n", "<Leader>t", function ()
