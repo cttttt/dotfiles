@@ -12,8 +12,12 @@ vim.keymap.set("n", "<Leader>cd", function ()
   require("lsp_lines").toggle()
 end, {})
 
-vim.keymap.set("n", "<Leader>t", function ()
+vim.keymap.set("n", "<Leader>T", function ()
   vim.cmd('Terminal')
+end, {})
+
+vim.keymap.set("n", "<Leader>t", function ()
+  vim.cmd('TmuxTerminal')
 end, {})
 
 vim.keymap.set("n", "<Leader>cr", function ()
