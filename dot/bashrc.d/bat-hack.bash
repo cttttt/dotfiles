@@ -1,7 +1,7 @@
 bat () {
   if which batcat >/dev/null; then
-    exec batcat "$@"
+    batcat "$@"
   fi
 
-  exec bat "$@"
+  command bat "$@"
 }
