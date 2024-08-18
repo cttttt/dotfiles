@@ -3,6 +3,8 @@
 --
 -- this is an alternative to using autochdir that doesn't cause plugins to
 -- break
+--
+
 vim.api.nvim_create_user_command('Terminal', function (opts)
   if vim.bo.filetype == 'neo-tree' then
     return
@@ -26,3 +28,30 @@ vim.api.nvim_create_user_command('Terminal', function (opts)
     args = opts.fargs,
   })
 end, { nargs = '*' })
+
+
+-- opens a terminal below the current tmux window with a cwd of current buffer's
+-- file's directory.
+--
+vim.api.nvim_create_user_command('TmuxTerminal', function (opts)
+  local cur_file_dir = vim.fn.expand("%:p:h")
+  ---@cast cur_file_dir string
+
+  local cmd = {'tmux', 'split-window'}
+
+  -- special buffers will not have a filesystem path. in these cases, we should
+  -- not try to change to the dirname of the current file.
+  if not(cur_file_dir == nil) and cur_file_dir:find('^/') then
+    table.insert(cmd, '-c')
+    table.insert(cmd, cur_file_dir)
+  end
+
+  print(opts.nargs)
+
+  if opts.nargs ~= nil then
+    table.insert(cmd, opts.args)
+  end
+
+  vim.system(cmd)
+end, { nargs = '*' })
+
