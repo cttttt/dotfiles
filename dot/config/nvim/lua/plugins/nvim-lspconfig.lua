@@ -12,16 +12,8 @@ return {
       tsserver = {},
       terraformls = {},
       lua_ls = {},
-      yamlls = {},
-      helm_ls = {
-        settings = {
-          ['helm-ls'] = {
-            yamlls = {
-              path = "yaml-language-server",
-            }
-          }
-        },
-      },
+      -- yamlls = {},
+      helm_ls = {},
     }) do
       require('lspconfig')[server]
       .setup(settings)
