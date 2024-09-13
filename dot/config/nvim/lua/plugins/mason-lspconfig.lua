@@ -6,7 +6,7 @@ return {
       "rust_analyzer",
       "solargraph",
       "basedpyright",
-      "tsserver",
+      "ts_ls",
       "terraformls",
       "lua_ls",
       "helm_ls",
