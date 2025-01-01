@@ -27,4 +27,15 @@ git_branch () {
   echo "$branch"
 }
 
+
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(kube_context)$(git_branch)\n\$ '
+
+set_osc_133_markers () {
+  local osc_133_prompt_start='\[\e]133;A\e\\\]'
+  local osc_133_output_start='\[\e]133;C\e\\\]'
+
+  PS1="$osc_133_prompt_start$PS1"
+  PS0="$osc_133_output_start"
+}
+
+set_osc_133_markers
