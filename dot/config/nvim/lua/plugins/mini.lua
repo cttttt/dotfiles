@@ -1,3 +1,5 @@
+local never = 10^6
+
 return {
   'echasnovski/mini.nvim',
   version = false,
@@ -5,6 +7,9 @@ return {
     require('mini.completion').setup({
       lsp_completion = {
         source_func = 'omnifunc',
+      },
+      delay = {
+        completion = never
       }
     })
 
