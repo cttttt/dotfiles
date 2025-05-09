@@ -12,14 +12,6 @@ vim.keymap.set("n", "<Leader>cd", function ()
   require("lsp_lines").toggle()
 end, {})
 
-vim.keymap.set("n", "<Leader>T", function ()
-  vim.cmd('Terminal')
-end, {})
-
-vim.keymap.set("n", "<Leader>t", function ()
-  vim.cmd('TmuxTerminal')
-end, {})
-
 vim.keymap.set("n", "<Leader>cr", function ()
   vim.lsp.buf.rename()
 end, {})
@@ -27,3 +19,13 @@ end, {})
 vim.keymap.set('n', '<leader>h', function ()
   vim.lsp.buf.hover()
 end, {})
+
+if not vim.g.vscode then
+  vim.keymap.set("n", "<Leader>T", function ()
+    vim.cmd('Terminal')
+  end, {})
+
+  vim.keymap.set("n", "<Leader>t", function ()
+    vim.cmd('TmuxTerminal')
+  end, {})
+end
