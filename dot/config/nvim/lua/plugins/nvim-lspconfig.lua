@@ -14,9 +14,16 @@ if not vim.g.vscode then
         terraformls = {},
         lua_ls = {},
         -- yamlls = {},
-        helm_ls = {},
+        yamlls = {
+          enabled = false
+        },
+        helm_ls = {
+          yamlls = {
+            enabled = false
+          }
+        },
       }) do
-        require('lspconfig')[server]
+      require('lspconfig')[server]
         .setup(settings)
       end
 
@@ -25,6 +32,7 @@ if not vim.g.vscode then
         update_in_insert = true,
       })
     end,
+
     dependencies = {
       "folke/neodev.nvim",
       "towolf/vim-helm",
