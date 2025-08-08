@@ -10,6 +10,8 @@ load_bash_completion () {
       return
     fi
   done
+
+  complete -o default -o bashdefault helm
 }
 
 load_bash_completion
