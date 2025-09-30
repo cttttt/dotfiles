@@ -28,4 +28,9 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<Leader>t", function ()
     vim.cmd('TmuxTerminal')
   end, {})
+
+  vim.keymap.set("n", "<Leader>cp", function ()
+    vim.cmd('Copilot panel')
+  end, {})
+
 end
