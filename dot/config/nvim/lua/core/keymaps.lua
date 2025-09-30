@@ -33,4 +33,11 @@ if not vim.g.vscode then
     vim.cmd('Copilot panel')
   end, {})
 
+  vim.keymap.set("n", "<Leader>ts", function ()
+    vim.cmd('Telescope')
+  end, {})
+
+  vim.keymap.set("n", "<Leader>tr", function ()
+    vim.cmd('Telescope resume')
+  end, {})
 end
