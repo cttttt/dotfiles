@@ -46,11 +46,6 @@ vim.api.nvim_create_user_command('TmuxTerminal', function (opts)
     table.insert(cmd, cur_file_dir)
   end
 
-  print(opts.nargs)
-
-  if opts.nargs ~= nil then
-    table.insert(cmd, opts.args)
-  end
 
   vim.system(cmd)
 end, { nargs = '*' })
