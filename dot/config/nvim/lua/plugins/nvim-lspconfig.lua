@@ -23,8 +23,7 @@ if not vim.g.vscode then
           }
         },
       }) do
-      require('lspconfig')[server]
-        .setup(settings)
+        vim.lsp.config(server, settings)
       end
 
       vim.diagnostic.config({
