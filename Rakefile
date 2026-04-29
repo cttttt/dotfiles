@@ -7,13 +7,13 @@ require 'tmpdir'
 
 task default: :all
 
-task all: %i[
+all_tasks = %i[
   install_dotfiles
+  install_nvim
   install_homebrew_git
   source_bashrc_d
   install_mise
   install_lazygit
-  install_nvim
   install_tmux
   install_fd
   install_bat
@@ -24,6 +24,15 @@ task all: %i[
   install_mason_things
   install_tmux_termcap
 ]
+
+all_tasks = %i[
+  install_dotfiles
+  install_nvim
+  install_lazygit
+  install_tmux
+]
+
+task all: all_tasks
 
 task :test do
   system(*%w[docker build -t dotfiles .]) and system(*%w[docker run --rm -ti dotfiles])
