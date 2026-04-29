@@ -6,6 +6,9 @@ eval "$(zoxide init zsh)"
 # encourage me to use zoxide more.
 #
 # note: to use `fzf` to search through zoxide, use `zi`
-zoxide add ~/src/github.com/cttttt/dotfiles
-zoxide add ~/src/gitlab.com
+
 zoxide add ~/src
+
+fd --hidden --no-ignore-vcs --glob '.git' ~/src | \
+  sed 's|/\.git.*||' | \
+  xargs -n1 zoxide add
