@@ -9,6 +9,14 @@ eval "$(zoxide init zsh)"
 
 zoxide add ~/src
 
-fd --hidden --no-ignore-vcs --glob '.git' ~/src | \
-  sed 's|/\.git.*||' | \
-  xargs -n1 zoxide add
+precmd_functions+=('add_git_repos_to_zoxide')
+
+add_git_repos_to_zoxide_list_cloned_git_repos () {
+  fd --hidden --no-ignore-vcs --glob '.git' ~/src
+}
+
+add_git_repos_to_zoxide () {
+  add_git_repos_to_zoxide_list_cloned_git_repos | \
+    sed 's|/\.git.*||' | \
+    xargs -n1 zoxide add
+}
