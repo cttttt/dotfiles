@@ -1,0 +1,1 @@
+../bashrc.d/default-to-nvim.bash
