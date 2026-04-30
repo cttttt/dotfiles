@@ -1,0 +1,1 @@
+../bashrc.d/add-homebrew-to-path.bash
