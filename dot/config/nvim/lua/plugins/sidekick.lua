@@ -9,6 +9,11 @@ return {
         enabled = true,
       },
       create = "window",
+      tools = {
+        openduo = {
+          cmd = { "openduo" },
+        },
+      },
     },
     nes = {
         enabled = false,
