@@ -1,0 +1,1 @@
+setopt INC_APPEND_HISTORY
