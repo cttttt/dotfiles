@@ -1,0 +1,6 @@
+git:
+  autoFetch: false
+keybinding:
+  files:
+    commitChangesWithEditor: c
+    commitChanges: C
