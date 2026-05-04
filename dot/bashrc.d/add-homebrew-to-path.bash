@@ -1,1 +1,2 @@
-PATH=$PATH:/opt/homebrew/sbin:/opt/homebrew/bin
+typeset -U path
+path=($path /opt/homebrew/sbin /opt/homebrew/bin)
