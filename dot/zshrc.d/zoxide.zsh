@@ -12,7 +12,7 @@ zoxide add ~/src
 precmd_functions+=('add_git_repos_to_zoxide')
 
 add_git_repos_to_zoxide_list_cloned_git_repos () {
-  fd --hidden --no-ignore-vcs --glob '.git' ~/src
+  fd --hidden --no-ignore-vcs --glob '.git' --prune ~/src
 }
 
 add_git_repos_to_zoxide () {
