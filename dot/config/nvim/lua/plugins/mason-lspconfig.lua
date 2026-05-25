@@ -12,6 +12,7 @@ if not vim.g.vscode then
         "lua_ls",
         "helm_ls",
         "yamlls",
+        "jsonnet_ls",
        }
      }
   }
