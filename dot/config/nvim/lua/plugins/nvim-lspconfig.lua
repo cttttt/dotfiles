@@ -5,6 +5,11 @@ if not vim.g.vscode then
       for server, settings in pairs({
         gopls = {
           settings = {
+            gopls = {
+              buildFlags = {
+                "-tags=configure",
+              },
+            },
           },
         },
         rust_analyzer = {},
