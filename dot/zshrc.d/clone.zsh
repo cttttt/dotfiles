@@ -1,6 +1,4 @@
 function clone () {
-  local repo_type=''
-
   if [[ $# < 1 ]]; then
     cat <<'END'
 Usage: clone REPO
@@ -20,15 +18,17 @@ $ clone git@github.com:ctttt/dotfiles
 END
   fi
 
-  local repo_url=$1
+  local parsed_repo_url
+  parsed_repo_url=$(clone_parse_url "$1")
 
-  if [[ ! $repo_url =~ 'git@.*:.*' ]]; then
-    echo "$0: $repo_url: unknown repo url type.  Consider using the git command directly." >&2
+  if [[ $? != 0 ]]; then
+    echo "$0: $1: Unknown repo url type.  Consider using the git command directly." >&2
     return 1
   fi
 
-  local repo_host=$(sed -E 's/^git@([^:]+):.*$/\1/' <<<$repo_url)
-  local repo_path=$(sed -E -e 's/^[^:]+:(.*)$/\1/' -e 's/\.git//' <<<$repo_url)
+  local repo_host=$(jq -r .host <<<$parsed_repo_url)
+  local repo_path=$(jq -r .path <<<$parsed_repo_url)
+  local repo_url=$(jq -r .normalized_git_over_ssh_url <<<$parsed_repo_url)
 
   local local_repo_dir=~/src/$repo_host/$repo_path
 
@@ -49,3 +49,61 @@ END
 
   cd "$local_repo_dir"
 }
+
+function clone_parse_url () {
+  # Emits a JSON object describing the provided Git repository URL
+  #
+  # {
+  #   "host": "The repository host (e.g. github.com, gitlab.com)"
+  #   "path": "The repository's canonical name (e.g. cttttt/dotfiles)"
+  #   "normalized_git_over_ssh_url": "The repository's canonical remote URL"
+  # }
+  #
+  # e.g.
+  #
+  # $ clone_parse_url https://github.com/cttttt/dotfiles
+  # {
+  #   "host": "github.com",
+  #   "path": "cttttt/dotfiles",
+  #   "normalized_git_over_ssh_url": "git@github.com:cttttt/dotfiles"
+  # }
+  #
+  #
+  local repo_url=$1
+  
+  ruby - "$repo_url" <<'DONE'
+require 'json'
+
+repo_url = ARGV[0]
+
+repo = {}
+
+GITHUB_HTTP_URL=%r{^https://(?<host>github.com)/(?<path>.*?/.*?)(.git)?(/|/blob.*)?$}
+
+if match = GITHUB_HTTP_URL.match(repo_url)
+  repo['host'] = match[:host]
+  repo['path'] = match[:path]
+end
+
+GITLAB_HTTP_URL=%r{^https://(?<host>gitlab.com)/(?<path>.*?/.*?)(/?|/-/.*)$}
+
+if match = GITLAB_HTTP_URL.match(repo_url)
+  repo['host'] = match[:host]
+  repo['path'] = match[:path]
+end
+
+GIT_OVER_SSH_URL=%r{^git@(?<host>.*?):(?<path>.*?)}
+
+if match = GIT_OVER_SSH_URL.match(repo_url)
+  repo['host'] = match[:host]
+  repo['path'] = match[:path]
+end
+
+raise "Could not parse URL: #{ARGV[0]}" if repo.empty?
+
+repo['normalized_git_over_ssh_url'] = 'git@%s:%s' % [repo['host'], repo['path']]
+
+puts repo.to_json
+DONE
+}
+
