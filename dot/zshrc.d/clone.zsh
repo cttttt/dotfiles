@@ -92,7 +92,7 @@ if match = GITLAB_HTTP_URL.match(repo_url)
   repo['path'] = match[:path]
 end
 
-GIT_OVER_SSH_URL=%r{^git@(?<host>.*?):(?<path>.*?)}
+GIT_OVER_SSH_URL=%r{^git@(?<host>.*?):(?<path>.*)$}
 
 if match = GIT_OVER_SSH_URL.match(repo_url)
   repo['host'] = match[:host]
