@@ -30,12 +30,22 @@ all_tasks = %i[
   install_nvim
   install_lazygit
   install_tmux
+  install_tmux_plugins
 ]
 
 task all: all_tasks
 
 task :test do
   system(*%w[docker build -t dotfiles .]) and system(*%w[docker run --rm -ti dotfiles])
+end
+
+task :install_tmux_plugins do
+  tmux_plugin_dir = File.join(Dir.home, %w[.tmux plugins tpm])
+  tmux_plugin_git_repo_dir = File.join([tmux_plugin_dir, '.git'])
+
+  next if Dir.exist?(tmux_plugin_git_repo_dir)
+
+  system(*%w[git clone https://github.com/tmux-plugins/tpm] + [tmux_plugin_dir])
 end
 
 task :install_tmux_termcap do
