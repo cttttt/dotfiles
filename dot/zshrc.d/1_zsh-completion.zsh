@@ -1,6 +1,8 @@
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+[[ -d ~/.zsh/zsh-completions/src ]] && fpath=(~/.zsh/zsh-completions/src $fpath)
 
-  autoload -Uz compinit
-  compinit
+if (( $+commands[brew] )); then
+  fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
 fi
+
+autoload -Uz compinit
+compinit
