@@ -7,7 +7,7 @@ if not vim.g.vscode then
           settings = {
             gopls = {
               buildFlags = {
-                "-tags=configure",
+                '-tags=configure',
               },
             },
           },
@@ -38,8 +38,8 @@ if not vim.g.vscode then
     end,
 
     dependencies = {
-      "folke/neodev.nvim",
-      "towolf/vim-helm",
+      'folke/neodev.nvim',
+      'towolf/vim-helm',
     },
   }
 else

@@ -5,14 +5,14 @@ end, {})
 vim.keymap.set('v', '<C-c>', '"+y', {})
 
 vim.keymap.set('n', '<leader>lg', function ()
-  vim.cmd.Terminal({args = {"lazygit"}})
+  vim.cmd.Terminal({args = {'lazygit'}})
 end, {})
 
-vim.keymap.set("n", "<Leader>cd", function ()
-  require("lsp_lines").toggle()
+vim.keymap.set('n', '<Leader>cd', function ()
+  require('lsp_lines').toggle()
 end, {})
 
-vim.keymap.set("n", "<Leader>cr", function ()
+vim.keymap.set('n', '<Leader>cr', function ()
   vim.lsp.buf.rename()
 end, {})
 
@@ -21,23 +21,23 @@ vim.keymap.set('n', '<leader>h', function ()
 end, {})
 
 if not vim.g.vscode then
-  vim.keymap.set("n", "<Leader>T", function ()
+  vim.keymap.set('n', '<Leader>T', function ()
     vim.cmd('Terminal')
   end, {})
 
-  vim.keymap.set("n", "<Leader>t", function ()
+  vim.keymap.set('n', '<Leader>t', function ()
     vim.cmd('TmuxTerminal')
   end, {})
 
-  vim.keymap.set("n", "<Leader>cp", function ()
+  vim.keymap.set('n', '<Leader>cp', function ()
     vim.cmd('Copilot panel')
   end, {})
 
-  vim.keymap.set("n", "<Leader>ts", function ()
+  vim.keymap.set('n', '<Leader>ts', function ()
     vim.cmd('Telescope')
   end, {})
 
-  vim.keymap.set("n", "<Leader>tr", function ()
+  vim.keymap.set('n', '<Leader>tr', function ()
     vim.cmd('Telescope resume')
   end, {})
 end

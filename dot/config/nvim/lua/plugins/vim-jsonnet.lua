@@ -3,7 +3,7 @@ return {
   config = function ()
     vim.filetype.add({
       extension = {
-        libjsonnet = "jsonnet",
+        libjsonnet = 'jsonnet',
       },
     })
   end

@@ -14,7 +14,7 @@ vim.api.nvim_create_user_command('Terminal', function (opts)
   vim.cmd('split')
   vim.api.nvim_set_current_win(original_window)
 
-  local cur_file_dir = vim.fn.expand("%:p:h")
+  local cur_file_dir = vim.fn.expand('%:p:h')
   ---@cast cur_file_dir string
 
   -- special buffers will not have a filesystem path. in these cases, we should
@@ -34,7 +34,7 @@ end, { nargs = '*' })
 -- file's directory.
 --
 vim.api.nvim_create_user_command('TmuxTerminal', function (opts)
-  local cur_file_dir = vim.fn.expand("%:p:h")
+  local cur_file_dir = vim.fn.expand('%:p:h')
   ---@cast cur_file_dir string
 
   local cmd = {'tmux', 'split-window'}
