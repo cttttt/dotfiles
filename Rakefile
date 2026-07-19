@@ -53,9 +53,28 @@ task :install_zsh_completions do
   zsh_completions_dir = File.join(Dir.home, %w[.zsh zsh-completions])
   zsh_completions_git_repo_dir = File.join([zsh_completions_dir, '.git'])
 
-  next if Dir.exist?(zsh_completions_git_repo_dir)
+  unless Dir.exist?(zsh_completions_git_repo_dir)
+    system(*%w[git clone https://github.com/zsh-users/zsh-completions.git] + [zsh_completions_dir])
+  end
 
-  system(*%w[git clone https://github.com/zsh-users/zsh-completions.git] + [zsh_completions_dir])
+  next unless osx?
+
+  raise 'could not brew install zsh-completions' unless brew_install('zsh-completions')
+
+  insecure_directories = [
+    '/opt/homebrew/share/zsh',
+    '/opt/homebrew/share/zsh/site-functions'
+  ]
+
+  group_write = 0o20
+  other_write = 0o2
+
+  insecure_directories.each do |insecure_dir|
+    next unless File.directory?(insecure_dir)
+
+    mode = File.stat(insecure_dir).mode & ~(group_write | other_write)
+    File.chmod(mode, insecure_dir)
+  end
 end
 
 task :install_tmux_termcap do
@@ -285,13 +304,17 @@ def osx?
   RUBY_PLATFORM.match(/darwin/)
 end
 
-def brew_install(packages, head: false)
-  system(
-    'brew',
-    'install',
-    *(head ? ['--HEAD'] : []),
-    *packages
-  )
+def brew_install(*packages, head: false)
+  packages.each do |package|
+    next if system('brew', 'ls', '--versions', package, out: File::NULL)
+
+    system(
+      'brew',
+      'install',
+      *(head ? ['--HEAD'] : []),
+      package
+    )
+  end
 end
 
 def deb_install(deb)
