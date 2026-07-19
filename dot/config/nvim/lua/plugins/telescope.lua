@@ -58,17 +58,9 @@ return {
       },
     })
 
-    vim.keymap.set('n', '<C-t>', function()
-      require('telescope.builtin').find_files({ hidden = true })
-    end, {})
-
-    vim.keymap.set('n', '<C-p>', function()
-      require('telescope.builtin').builtin()
-    end, {})
-
-    vim.keymap.set('n', '<Leader>be', function()
-      require('telescope.builtin').buffers()
-    end, {})
+    vim.keymap.set('n', '<C-t>', require('telescope.builtin').find_files, { desc = 'Find files (hidden)' })
+    vim.keymap.set('n', '<C-p>', require('telescope.builtin').builtin, { desc = 'Telescope commands' })
+    vim.keymap.set('n', '<Leader>be', require('telescope.builtin').buffers, { desc = 'Buffers' })
 
     vim.api.nvim_create_user_command('Ag', function(opts)
       require('telescope.builtin').live_grep({ default_text = opts.args })
