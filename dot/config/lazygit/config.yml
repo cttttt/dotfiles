@@ -1,5 +1,6 @@
 git:
   autoFetch: false
+  overrideGpg: true
 keybinding:
   files:
     commitChangesWithEditor: c
