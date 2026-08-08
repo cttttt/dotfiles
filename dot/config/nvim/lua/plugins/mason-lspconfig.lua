@@ -18,6 +18,7 @@ return {
       'helm_ls',
       'yamlls',
       'jsonnet_ls',
+      'clangd',
     },
   },
 }

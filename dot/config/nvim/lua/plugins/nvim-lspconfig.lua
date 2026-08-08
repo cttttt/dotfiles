@@ -27,6 +27,7 @@ if not vim.g.vscode then
             enabled = false
           }
         },
+        clangd = {},
       }) do
         vim.lsp.config(server, settings)
       end
